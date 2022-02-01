@@ -1,0 +1,46 @@
+.login-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#login {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background-color: dodgerblue;
+}
+
+h1{
+  position: relative;
+  left: 30%;
+}
+
+#login button{
+  width: 110px;
+  height: 25px;
+  border: none;
+  border-radius: 15px;
+  background-color: cyan;
+  margin-bottom: 15px;
+  position: relative;
+  left: 20%;
+}
+
+#login button:hover {
+  border: none;
+  border-radius: 15px;
+  background: linear-gradient(90deg, Cyan);
+  cursor: pointer;
+}
+
+#login input {
+
+  width: 100%;
+  height: 25px;
+  border: none;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
