@@ -18,3 +18,4 @@ database(`CREATE TABLE IF NOT EXISTS USER (
 }).catch(erro => {
     console.log("TABELA USER COM ERRO NA CRIAÇÃO")
 });
+
