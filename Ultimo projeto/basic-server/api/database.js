@@ -5,6 +5,8 @@ database(`CREATE TABLE IF NOT EXISTS PESSOA (
     IDADE int not null,
     SEXO char(1) not null,
     EMAIL char(100),
+    USUARIO varchar(15) not null,
+    SENHA varchar(20) not null,
     PROFESSOR boolean
     )`).then(result => {
         console.log("TABELA PESSOA CRIADA COM SUCESSO")
