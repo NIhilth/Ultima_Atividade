@@ -4,7 +4,7 @@ database(`CREATE TABLE IF NOT EXISTS PESSOA (
     NOME varchar(45) not null,
     IDADE int not null,
     SEXO char(1) not null,
-    EMAIL char(100),
+    EMAIL varchar(100),
     USUARIO varchar(15) not null,
     SENHA varchar(20) not null,
     PROFESSOR boolean
