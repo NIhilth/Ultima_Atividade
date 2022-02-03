@@ -1,8 +1,30 @@
 <div class="login-container">
   <div id="login">
-    <h1>Login</h1>
-    <input [(ngModel)]='user' placeholder="Username">
-    <input [(ngModel)]='password' placeholder="Password" type='password'>
-    <button (click)='logar()'>Login</button>
+    <div id="titulo">Login</div>
+    <div>
+      <div class="nome-input">
+        Nome de usuário
+      </div>
+      <div class="inputs">
+        <input [(ngModel)]='password' placeholder="Nome de usuário" type='text'>
+      </div>
+    </div>
+    <div>
+      <div class="nome-input">
+        Senha
+      </div>
+      <div class="inputs">
+        <input [(ngModel)]='password' placeholder="Senha" type='password'>
+      </div>
+    </div>
+    <div>
+      <div style="display: flex; justify-content: center;">
+        <button (click)='logar()'>Login</button>
+      </div>
+      <div style="display: flex; justify-content: center;">
+        <a href=""> Logar como Doscente</a>
+      </div>
+    </div>
+
   </div>
 </div>
