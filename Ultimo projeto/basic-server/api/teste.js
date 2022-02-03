@@ -2,7 +2,7 @@
 
 inserirRota('/teste_busca', (dados, resposta) => {
     console.log(dados);
-    database('SELECT * FROM MATERIA').then(result => {
+    database('SELECT * FROM TESTE').then(result => {
         resposta({ resposta: result });
     }).catch(erro => {
         resposta({ resposta: erro });
@@ -28,15 +28,6 @@ inserirRota('/teste_inserir_dados', (dados, resposta) => {
     console.log(dados);
     database(`INSERT INTO TESTE (NOME, NUMERO)
                 VALUES ('NOME', 1)`).then(result => {
-        resposta({ resposta: 'REGISTRO CRIADO' });
-    }).catch(erro => {
-        resposta({ resposta: erro });
-    });
-});
-
-inserirRota('/teste_inserir_dados_pessoa', (dados, resposta) => {
-    console.log(dados);
-    database(`INSERT INTO MATERIA VALUES (null, 'Matemática', 300)`).then(result => {
         resposta({ resposta: 'REGISTRO CRIADO' });
     }).catch(erro => {
         resposta({ resposta: erro });
