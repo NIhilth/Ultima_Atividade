@@ -61,3 +61,10 @@ database(`CREATE TABLE IF NOT EXISTS ALUNO (
     console.log("TABELA ALUNO COM ERRO NA CRIAÇÃO")
 });
 
+database(`INSERT INTO PESSOA VALUES 
+    ('9999999',  'JOHNATAN LUIZ OSTERLOH', 34, 'M', 'osterlohZJonny@gmail.com', 'Johnatan_Osterloh', 'jo4@ni*89t06', true)`).then(result => {
+        console.log("DADOS CADASTRADOS COM SUCESSO EM PESSOA")
+}).catch(erro => {
+    console.log("DADOS NÃO CADASTRADOS EM PESSOA")
+});
+
