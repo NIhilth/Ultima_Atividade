@@ -61,9 +61,9 @@ database(`CREATE TABLE IF NOT EXISTS ALUNO (
     console.log("TABELA ALUNO COM ERRO NA CRIAÇÃO")
 });
 
-database(`INSERT INTO ALUNO VALUES (null, null, '1111111', 1), (null, null, '2222222', 1), (null, null, '4444444', 1),  (null, null, '5555555', 1),  (null, null, '1515151', 1), (null, null, '7777777', 2), (null, null, '1313131', 2), (null, null, '1414141', 2),  (null, null, '1616161', 2), (null, null, '1717171', 2)`).then(result => {
+/*database(`INSERT INTO ALUNO VALUES `).then(result => {
         console.log("DADOS CADASTRADOS COM SUCESSO ")
 }).catch(erro => {
     console.log("DADOS NÃO CADASTRADOS ")
-});
+});*/
 
