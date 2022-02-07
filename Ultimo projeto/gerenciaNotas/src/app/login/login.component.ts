@@ -19,10 +19,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  logar(){
+  logar() {
     localStorage.setItem('USER', this.user)
     localStorage.setItem("PASSWORD", this.password)
   }
-
 
 }

@@ -52,6 +52,7 @@
   border: none;
   border-radius: 15px;
   color: rgb(58, 56, 56);
+  outline: none;
 }
 
 .nome-input{
@@ -70,9 +71,14 @@
   padding-left: 15px;
   border-radius: 5px;
   color: rgb(58, 56, 56);
+  outline: none;
 }
 
 a{
   color: cornflowerblue;
   font-size: 13px;
+}
+
+a:hover{
+  color:blue;
 }
