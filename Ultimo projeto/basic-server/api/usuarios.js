@@ -1,10 +1,10 @@
 inserirRota('/buscar_usuario', function (dados, resposta){
 console.log(dados);
 
-database(`SELECT * FROM USER WHERE NICKNAME = "${dados.nickname}" AND PASSWORD = "  ${dados.password}"`)
+database(`SELECT * FROM USER`)
     .then( result => {
         console.log("Usuário inserido com sucesso!")
-        resposta({user: result[0]})
+        resposta({list: result})
     }).catch(erro => {
         console.log('Erro ao inserir o usuário')
         resposta({erro: 'Erro ao inserir o usuário'})
