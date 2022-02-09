@@ -6,7 +6,8 @@ database(`CREATE TABLE IF NOT EXISTS PESSOA (
     SEXO char(1) not null,
     EMAIL varchar(100),
     USUARIO varchar(15) not null,
-    SENHA varchar(20) not null
+    SENHA varchar(20) not null,
+    PROFESSOR boolean not null
     )`).then(result => {
         console.log("TABELA PESSOA CRIADA COM SUCESSO")
 }).catch(erro => {
@@ -40,8 +41,8 @@ database(`CREATE TABLE IF NOT EXISTS MATERIA (
 database(`CREATE TABLE IF NOT EXISTS TURMA (
     ID INTEGER PRIMARY KEY AUTOINCREMENT,
     NOME varchar(30) not null,
-    ID_PROFESSOR int not null,
-    foreign key (ID_PROFESSOR) references PROFESSOR(ID) on delete cascade on update cascade
+    PROFESSOR_REGENTE int not null,
+    foreign key (PROFESSOR_REGENTE) references PROFESSOR(ID) on delete cascade on update cascade
     )`).then(result => {
         console.log("TABELA TURMA CRIADA COM SUCESSO")
 }).catch(erro => {
@@ -62,10 +63,9 @@ database(`CREATE TABLE IF NOT EXISTS ALUNO (
     console.log("TABELA ALUNO COM ERRO NA CRIAÇÃO")
 });
 
-database(`INSERT INTO ALUNO VALUES(null, null, '1111111', 1), (null, null, '2222222', 1), (null, null, '4444444', 1),  (null, null, '5555555', 1),  (null, null, '1515151', 1), (null, null, '7777777', 2), (null, null, '1313131', 2), (null, null, '1414141', 2),  (null, null, '1616161', 2), (null, null, '1717171', 2)
-`).then(result => {
-        console.log("DADOS CADASTRADOS COM SUCESSO ")
-}).catch(erro => {
-    console.log("DADOS NÃO CADASTRADOS ")
-});
+// database(`INSERT INTO PROFESSOR VALUES `).then(result => {
+//         console.log("DADOS CADASTRADOS COM SUCESSO ")
+// }).catch(erro => {
+//     console.log("DADOS NÃO CADASTRADOS ")
+// });
 
