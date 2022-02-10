@@ -25,8 +25,10 @@ export class LoginComponent implements OnInit {
     this.usuarioService.checarAluno()
     .then((resultado: string[]) =>{
       console.log(resultado)
-      for(let i = 0; i < resultado.length; i++){
-
+      for(let i = 0; i < resultado.length; i++){ 
+        if(this.user === resultado[i].usuario){
+          console.log('carai')
+        }
       }
     })
     .catch(erro =>{
