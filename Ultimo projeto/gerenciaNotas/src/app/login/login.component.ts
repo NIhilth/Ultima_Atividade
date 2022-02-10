@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   password = ''
 
   constructor(
-    private UsuarioService: UsuarioService,
+    private usuarioService: UsuarioService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -21,16 +21,18 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  // logar() {
-  //   this.UsuarioService.checarAluno()
-  //   .then(resultado => {
-  //     console.log('RESULTADO:', resultado)
-  //     this.user = resultado.user
-  //     this.password = resultado.password
-  //   })
-  //   .catch(erro => {
-  //     console.log('ERRO AO BUSCAR ALUNO:', erro)
-  //   })
-  // }
+  logar() {
+    this.usuarioService.checarAluno()
+    .then((resultado: string[]) =>{
+      console.log(resultado)
+      for(let i = 0; i < resultado.length; i++){
+
+      }
+    })
+    .catch(erro =>{
+      console.log('deu mal', erro)
+    })
+  }
 
 }
+   

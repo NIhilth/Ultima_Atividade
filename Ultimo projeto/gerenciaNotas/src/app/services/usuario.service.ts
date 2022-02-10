@@ -25,7 +25,7 @@ export class UsuarioService {
     return new Promise((resolve, reject) => {
       fetch('/api/checar',
         { method: 'POST', headers: { 'Content-Type': 'application/json' } }
-      ).then(result => result.json)
+      ).then(result => result.json())
         .then(resolvido => resolve(resolvido))
         .catch(reject)
     })

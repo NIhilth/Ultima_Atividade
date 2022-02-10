@@ -37,19 +37,19 @@ inserirRota('/checar', function (dados, resposta) {
         .then(result => {
             const listaInfo = []
             for (i = 0; i < result.length; i++) {
-                let user = pessoa.USUARIO
-                let password = pessoa.SENHA
+                let user = result[i].USUARIO
+                let password = result[i].SENHA
+                let prof = result[i].PROFESSOR
 
                 info = {
-                    usuario = user,
-                    senha = password
+                    usuario: user,
+                    senha: password,
+                    validacao: prof
                 }
-
                 listaInfo.push(info)
-                
             }
-            resposta(listaInfo)
             console.log(result)
+            resposta(listaInfo)
         }).catch(erro => {
             console.log('DEU BOSTA')
             resposta({ erro })
