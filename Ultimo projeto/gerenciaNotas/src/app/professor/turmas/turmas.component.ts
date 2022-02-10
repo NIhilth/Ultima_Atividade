@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-turmas',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TurmasComponent implements OnInit {
 
-  constructor() { }
+  id_professor
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router
+  ) { 
+    this.id_professor = route.snapshot.paramMap.get('id_professor')
+  }
 
   ngOnInit() {
   }

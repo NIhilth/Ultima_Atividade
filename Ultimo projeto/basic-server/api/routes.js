@@ -1,3 +1,3 @@
 require('./teste');
-require('./usuarios')
+require('./rotasParaUsar')
 require('./database')
