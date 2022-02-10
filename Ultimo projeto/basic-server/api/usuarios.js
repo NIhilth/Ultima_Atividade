@@ -48,7 +48,6 @@ inserirRota('/checar', function (dados, resposta) {
                 }
                 listaInfo.push(info)
             }
-            console.log(result)
             resposta(listaInfo)
         }).catch(erro => {
             console.log('DEU BOSTA')
