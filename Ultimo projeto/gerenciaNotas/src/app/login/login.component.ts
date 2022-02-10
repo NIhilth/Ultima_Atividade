@@ -23,11 +23,15 @@ export class LoginComponent implements OnInit {
 
   logar() {
     this.usuarioService.checarAluno()
-    .then((resultado: string[]) =>{
+    .then((resultado: (Object: (String|boolean)) =>[]) =>{
       console.log(resultado)
       for(let i = 0; i < resultado.length; i++){ 
-        if(this.user === resultado[i].usuario){
-          console.log('carai')
+        if(this.user === resultado[i].usuario && this.password === resultado[i].senha){
+          if(resultado[i].validacao == true){
+            this.router.navigate(['/api/professor/turmas'])
+          } else {
+            this.router.navigate(['/api/aluno/materias'])
+          }
         }
       }
     })
