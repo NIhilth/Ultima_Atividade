@@ -8,20 +8,7 @@ export class UsuarioService {
 
   constructor() { }
 
-  blablausuario() {
-    return new Promise((resolve, reject) => {
-      fetch('/api/buscar_usuario',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' }
-        }).then(resultado => resultado.json()
-        ).then(function (dados) {
-          dados = resolve(dados)
-        }).catch(reject)
-    })
-  }
-
-  checarAluno() {
+  checarPessoa() {
     return new Promise((resolve, reject) => {
       fetch('/api/checar',
         { method: 'POST', headers: { 'Content-Type': 'application/json' } }

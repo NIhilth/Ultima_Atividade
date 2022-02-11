@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   logar() {
-    this.usuarioService.checarAluno()
+    this.usuarioService.checarPessoa()
     .then((resultado: (Object: (String|boolean)) =>[]) =>{
       console.log(resultado)
       for(let i = 0; i < resultado.length; i++){ 
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
           //   this.router.navigate(['/aluno/'])
           // }
           console.log('foi')
-        }
+        } 
       }
     })
     .catch(erro =>{
