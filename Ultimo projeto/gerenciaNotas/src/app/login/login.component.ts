@@ -27,11 +27,12 @@ export class LoginComponent implements OnInit {
       console.log(resultado)
       for(let i = 0; i < resultado.length; i++){ 
         if(this.user === resultado[i].usuario && this.password === resultado[i].senha){
-          if(resultado[i].validacao == true){
-            this.router.navigate(['/professor/'])
-          } else {
-            this.router.navigate(['/aluno/'])
-          }
+          // if(resultado[i].validacao == true){
+          //   this.router.navigate(['/professor/'])
+          // } else {
+          //   this.router.navigate(['/aluno/'])
+          // }
+          console.log('foi')
         }
       }
     })
