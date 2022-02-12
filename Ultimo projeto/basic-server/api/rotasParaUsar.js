@@ -23,4 +23,9 @@ inserirRota('/checar', function (dados, resposta) {
         })
 })
 
-inserirRota('/ver_professor')
+inserirRota('/ver_professor', function (dados, resposta){
+    database('SELECT * FROM PROFESSOR')
+    .then(result =>{
+        resposta(result)
+    })
+})
