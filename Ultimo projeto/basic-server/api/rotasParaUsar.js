@@ -29,3 +29,10 @@ inserirRota('/ver_professor', function (dados, resposta){
         resposta(result)
     })
 })
+
+inserirRota('/ver_aluno', function (dados, resposta){
+    database('SELECT * FROM ALUNO')
+    .then(result =>{
+        resposta(result)
+    })
+})
