@@ -4,9 +4,10 @@ import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router';
 import { MateriasComponent } from './materias/materias.component';
 import { MateriaComponent } from './materia/materia.component';
+import CheckLogged from '../checkLogged';
 
 const routes: Routes = [
-  {path: 'aluno', children:[
+  {path: 'aluno', canActivate: [CheckLogged],children:[
     {path: ':id_aluno', component: MateriasComponent, children: [
       {path: 'materia', component: MateriaComponent}
     ]}

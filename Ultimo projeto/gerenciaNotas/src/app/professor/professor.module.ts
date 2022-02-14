@@ -5,10 +5,12 @@ import { Routes } from '@angular/router';
 import { TurmasComponent } from './turmas/turmas.component';
 import { AlunosComponent } from './alunos/alunos.component';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
+import CheckLogged from '../checkLogged';
+
 
 const routes: Routes = [
   {
-    path: 'professor', children: [
+    path: 'professor', canActivate:[CheckLogged], children: [
       {
         path: ':id_professor', component: TurmasComponent, children: [
           { path: 'alunos', component: AlunosComponent },

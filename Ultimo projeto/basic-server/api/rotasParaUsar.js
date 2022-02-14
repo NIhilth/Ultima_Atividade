@@ -36,3 +36,17 @@ inserirRota('/ver_aluno', function (dados, resposta){
         resposta(result)
     })
 })
+
+inserirRota('/usar_turma', function (dados, resposta){
+    database('SELECT * FROM TURMA')
+    .then(result =>{
+        resposta(result)
+    })
+})
+
+inserirRota('/usar_mateira', function (dados, resposta){
+    database('SELECT * FROM MATERIA')
+    .then(result =>{
+        resposta(result)
+    })
+})

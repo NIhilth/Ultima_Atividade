@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
   logar() {
     this.usuarioService.checarPessoa()
     .then((resultado: (Object: (String|boolean)) =>[]) =>{
-      console.log(resultado)
       for(let i = 0; i < resultado.length; i++){ 
         if(this.user === resultado[i].usuario && this.password === resultado[i].senha){
           if(resultado[i].validacao == true){
@@ -34,6 +33,8 @@ export class LoginComponent implements OnInit {
               for(let j = 0; j < result.length ; j++){
                 if(result[j].RG_PESSOA === resultado[i].num){
                   let id_professor = result[j].ID
+                  localStorage.setItem("USER", resultado[i].usuario)
+                  localStorage.setItem("PASSWORD", resultado[i].senha)
                   this.router.navigate(['professor', id_professor])
                 } 
               }
@@ -44,6 +45,8 @@ export class LoginComponent implements OnInit {
               for(let j = 0; j < result.length ; j++){
                 if(result[j].RG_PESSOA === resultado[i].num){
                   let id_aluno = result[j].ID
+                  localStorage.setItem("USER", resultado[i].usuario)
+                  localStorage.setItem("PASSWORD", resultado[i].senha)
                   this.router.navigate(['/aluno/', id_aluno])
                 } 
               }
