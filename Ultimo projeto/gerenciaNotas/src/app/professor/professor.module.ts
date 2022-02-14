@@ -5,7 +5,7 @@ import { Routes } from '@angular/router';
 import { TurmasComponent } from './turmas/turmas.component';
 import { AlunosComponent } from './alunos/alunos.component';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
-import CheckLogged from '../checkLogged';
+import CheckLogged from '../checkLogged.canActivate';
 
 
 const routes: Routes = [

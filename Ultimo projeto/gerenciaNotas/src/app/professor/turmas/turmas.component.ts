@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-turmas',
@@ -7,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TurmasComponent implements OnInit {
 
+  id
 
-  constructor(){}
+  constructor(
+    private router: Router
+  ){}
 
   ngOnInit() {
+    let url = this.router.url
+    this.id = url.charAt(url.length - 1)
   }
 
 }

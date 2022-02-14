@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router';
 import { MateriasComponent } from './materias/materias.component';
 import { MateriaComponent } from './materia/materia.component';
-import CheckLogged from '../checkLogged';
+import CheckLogged from '../checkLogged.canActivate';
 
 const routes: Routes = [
   {path: 'aluno', canActivate: [CheckLogged],children:[

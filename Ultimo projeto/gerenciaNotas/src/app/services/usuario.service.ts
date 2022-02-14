@@ -37,4 +37,24 @@ export class UsuarioService {
         .catch(reject)
     })
   }
+
+  dadosTurma(){
+    return new Promise((resolve,reject) =>{
+      fetch('/api/usar_turma',
+        { method: 'POST', headers: { 'Content-Type': 'application/json' } }
+      ).then(result => result.json())
+        .then(resolvido => resolve(resolvido))
+        .catch(reject)
+    })
+  }
+
+  dadosMateria(){
+    return new Promise((resolve,reject) =>{
+      fetch('/api/usar_materia',
+        { method: 'POST', headers: { 'Content-Type': 'application/json' } }
+      ).then(result => result.json())
+        .then(resolvido => resolve(resolvido))
+        .catch(reject)
+    })
+  }
 }
