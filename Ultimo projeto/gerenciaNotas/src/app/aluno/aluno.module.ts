@@ -7,7 +7,7 @@ import { MateriaComponent } from './materia/materia.component';
 
 const routes: Routes = [
   {path: 'aluno', children:[
-    {path: 'id_aluno:', component: MateriasComponent, children: [
+    {path: ':id_aluno', component: MateriasComponent, children: [
       {path: 'materia', component: MateriaComponent}
     ]}
   ]}

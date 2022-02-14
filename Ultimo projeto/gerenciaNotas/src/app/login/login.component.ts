@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
               for(let j = 0; j < result.length ; j++){
                 if(result[j].RG_PESSOA === resultado[i].num){
                   let id_professor = result[j].ID
-                  this.router.navigate(['/professor/', id_professor])
+                  this.router.navigate(['professor', id_professor])
                 } 
               }
             } )

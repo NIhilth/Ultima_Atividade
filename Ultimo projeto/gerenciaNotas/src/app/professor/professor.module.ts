@@ -7,12 +7,16 @@ import { AlunosComponent } from './alunos/alunos.component';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 
 const routes: Routes = [
-  {path: 'professor', children:[
-    {path: 'id_professor:', component: TurmasComponent, children: [
-      {path: 'alunos', component: AlunosComponent},
-      {path: 'avaliacao', component: AvaliacaoComponent}
-    ]}
-  ]}
+  {
+    path: 'professor', children: [
+      {
+        path: ':id_professor', component: TurmasComponent, children: [
+          { path: 'alunos', component: AlunosComponent },
+          { path: 'avaliacao', component: AvaliacaoComponent }
+        ]
+      }
+    ]
+  }
 ]
 
 @NgModule({
