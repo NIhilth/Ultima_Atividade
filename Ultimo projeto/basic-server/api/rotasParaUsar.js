@@ -50,3 +50,10 @@ inserirRota('/usar_mateira', function (dados, resposta){
         resposta(result)
     })
 })
+
+inserirRota('/ver_pessoa', function (dados, resposta){
+    database('SELECT * FROM PESSOA')
+    .then(result =>{
+        resposta(result)
+    })
+})

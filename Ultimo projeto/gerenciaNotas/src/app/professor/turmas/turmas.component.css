@@ -1,5 +1,44 @@
 #body{
     height: 100vh;
     width: 100vw;
-    background-color:  lightskyblue;;
+    background-color:  lightskyblue;
+    display: flex;
+}
+
+#lado{
+    height: 100%;
+    background-color: white ;
+}
+
+.container-info-professor{
+    display: grid;
+    width: 250px;
+    height: 50%;
+}
+
+.container-turmas{
+    display: grid;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+#turmas{
+    padding: 50px;
+    width: 70vw;
+    height: auto;
+}
+
+.turma{
+    width: 100%;
+    height: 20%;
+    background-color: #e1f6ff;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    padding: 10px;
+    display: grid;
+}
+
+h1{
+    border-bottom: solid black 70% 1px;
 }

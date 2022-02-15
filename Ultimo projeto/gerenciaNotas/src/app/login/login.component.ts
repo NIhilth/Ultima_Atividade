@@ -1,7 +1,6 @@
 import { UsuarioService } from './../services/usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Console } from 'console';
 
 @Component({
   selector: 'app-login',
