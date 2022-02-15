@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { ProfessorModule } from './professor/professor.module';
 import { AlunoModule } from './aluno/aluno.module';
 import CheckLoggedProfessor from './checkLoggedProfessor.canActivate';
-import CheckLoggedStudent from './chackLoggedStudent.canActivate'
+import CheckLoggedStudent from './checkLoggedStudent.canActivate'
 
 const routes: Routes = [
   {path: '', component: LoginComponent}

@@ -17,15 +17,17 @@ class CheckLoggedStudent implements CanActivate {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot,
     ): Observable<boolean> | Promise<boolean> | boolean {
-        console.log("Dentro")
 
         let user = localStorage.getItem("USER")
         let password = localStorage.getItem("PASSWORD")
         let verifica = localStorage.getItem("PROFESSOR")
 
         if (user && password) {
-            if(verifica == '0'){
-            return true;
+            if (verifica == '0') {
+                return true;
+            } else {
+                this.router.navigate([''])
+                return false;
             }
         } else {
             this.router.navigate([''])
