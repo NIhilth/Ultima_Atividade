@@ -8,7 +8,7 @@ import {
 import { Observable } from "rxjs";
 
 @Injectable()
-class CheckLogged implements CanActivate {
+class CheckLoggedStudent implements CanActivate {
     constructor(
         private router: Router
     ) { }
@@ -21,9 +21,12 @@ class CheckLogged implements CanActivate {
 
         let user = localStorage.getItem("USER")
         let password = localStorage.getItem("PASSWORD")
+        let verifica = localStorage.getItem("PROFESSOR")
 
         if (user && password) {
+            if(verifica == '0'){
             return true;
+            }
         } else {
             this.router.navigate([''])
             return false;
@@ -31,4 +34,4 @@ class CheckLogged implements CanActivate {
     }
 }
 
-export default CheckLogged;
+export default CheckLoggedStudent;

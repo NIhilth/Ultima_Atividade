@@ -23,7 +23,8 @@ export class LoginComponent implements OnInit {
 
   logar() {
     this.usuarioService.checarPessoa()
-    .then((resultado: (Object: (String|boolean)) =>[]) =>{
+    .then((resultado: (Object: (String|boolean)) => []) =>{
+      console.log(resultado)
       for(let i = 0; i < resultado.length; i++){ 
         if(this.user === resultado[i].usuario && this.password === resultado[i].senha){
           if(resultado[i].validacao == true){
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
                   let id_professor = result[j].ID
                   localStorage.setItem("USER", resultado[i].usuario)
                   localStorage.setItem("PASSWORD", resultado[i].senha)
+                  localStorage.setItem("PROFESSOR", resultado[i].validacao )
                   this.router.navigate(['professor', id_professor])
                 } 
               }
@@ -46,6 +48,7 @@ export class LoginComponent implements OnInit {
                   let id_aluno = result[j].ID
                   localStorage.setItem("USER", resultado[i].usuario)
                   localStorage.setItem("PASSWORD", resultado[i].senha)
+                  localStorage.setItem("PROFESSOR", resultado[i].validacao )
                   this.router.navigate(['/aluno/', id_aluno])
                 } 
               }

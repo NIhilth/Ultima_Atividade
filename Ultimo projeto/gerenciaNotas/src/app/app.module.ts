@@ -7,7 +7,8 @@ import { Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ProfessorModule } from './professor/professor.module';
 import { AlunoModule } from './aluno/aluno.module';
-import CheckLogged from './checkLogged.canActivate';
+import CheckLoggedProfessor from './checkLoggedProfessor.canActivate';
+import CheckLoggedStudent from './chackLoggedStudent.canActivate'
 
 const routes: Routes = [
   {path: '', component: LoginComponent}
@@ -26,7 +27,7 @@ const routes: Routes = [
     ProfessorModule,
     AlunoModule
   ],
-  providers: [CheckLogged],
+  providers: [CheckLoggedProfessor, CheckLoggedStudent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

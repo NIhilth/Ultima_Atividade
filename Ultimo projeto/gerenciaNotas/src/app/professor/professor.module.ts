@@ -5,17 +5,20 @@ import { Routes } from '@angular/router';
 import { TurmasComponent } from './turmas/turmas.component';
 import { AlunosComponent } from './alunos/alunos.component';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
-import CheckLogged from '../checkLogged.canActivate';
-
+import CheckLoggedProfessor from '../checkLoggedProfessor.canActivate';
+import { LoginComponent } from '../login/login.component';
 
 const routes: Routes = [
   {
-    path: 'professor', canActivate:[CheckLogged], children: [
+    path: 'professor', children: [
       {
-        path: ':id_professor', canActivate:[CheckLogged], component: TurmasComponent, children: [
-          { path: 'alunos', canActivate:[CheckLogged], component: AlunosComponent },
-          { path: 'avaliacao', canActivate:[CheckLogged], component: AvaliacaoComponent }
+        path: ':id_professor', canActivate:[CheckLoggedProfessor], component: TurmasComponent, children: [
+          { path: 'alunos', canActivate:[CheckLoggedProfessor], component: AlunosComponent },
+          { path: 'avaliacao', canActivate:[CheckLoggedProfessor], component: AvaliacaoComponent }
         ]
+      },
+      {
+        path: '', component:  LoginComponent
       }
     ]
   }
