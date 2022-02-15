@@ -63,7 +63,8 @@ database(`CREATE TABLE IF NOT EXISTS ALUNO (
     console.log("TABELA ALUNO COM ERRO NA CRIAÇÃO")
 });
 
-database(`INSERT INTO aluno VALUES `).then(result => {
+database(`INSERT INTO TURMA VALUES (null,'Turma 203', 3), (null, 'Turma 301',4)
+`).then(result => {
         console.log("DADOS CADASTRADOS COM SUCESSO ")
 }).catch(erro => {
     console.log("DADOS NÃO CADASTRADOS ")
