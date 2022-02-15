@@ -45,5 +45,9 @@ export class TurmasComponent implements OnInit {
       })
   }
 
+  verPerfil(){
+    this.router.navigate(['professor/perfil'])
+    //arruma isso aqui mano
+  }
 
 }

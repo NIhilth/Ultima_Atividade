@@ -4,11 +4,13 @@
       <div class="container-imagem">
        <img class="imagem" [src]="sexo == 'F' ? 'https://img.icons8.com/external-wanicon-lineal-color-wanicon/64/000000/external-woman-avatar-wanicon-lineal-color-wanicon-4.png' : 'https://img.icons8.com/external-wanicon-lineal-color-wanicon/64/000000/external-man-avatar-wanicon-lineal-color-wanicon-7.png' " alt="">
       </div>
-      <div>
+      <div id="info">
         {{nome}}
       </div>
-      <div>
-        *"Ver perfil"*
+      <div  id="info">
+        <span (click)="verPerfil()">
+          *"Ver perfil"*
+        </span>
       </div>
     </div>
   </div>
