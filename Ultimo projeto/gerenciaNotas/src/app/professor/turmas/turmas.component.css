@@ -16,6 +16,16 @@
     height: 50%;
 }
 
+.container-imagem{
+    display: flex;
+    justify-content: center;
+    padding: 20px 0px;
+}
+
+.imagem{
+    
+}
+
 .container-turmas{
     display: grid;
     justify-content: center;

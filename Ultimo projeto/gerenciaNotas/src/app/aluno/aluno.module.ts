@@ -8,8 +8,8 @@ import CheckLogged from '../checkLogged.canActivate';
 
 const routes: Routes = [
   {path: 'aluno', canActivate: [CheckLogged],children:[
-    {path: ':id_aluno', component: MateriasComponent, children: [
-      {path: 'materia', component: MateriaComponent}
+    {path: ':id_aluno', canActivate: [CheckLogged], component: MateriasComponent, children: [
+      {path: 'materia', canActivate: [CheckLogged], component: MateriaComponent}
     ]}
   ]}
 ]

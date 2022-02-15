@@ -12,9 +12,9 @@ const routes: Routes = [
   {
     path: 'professor', canActivate:[CheckLogged], children: [
       {
-        path: ':id_professor', component: TurmasComponent, children: [
-          { path: 'alunos', component: AlunosComponent },
-          { path: 'avaliacao', component: AvaliacaoComponent }
+        path: ':id_professor', canActivate:[CheckLogged], component: TurmasComponent, children: [
+          { path: 'alunos', canActivate:[CheckLogged], component: AlunosComponent },
+          { path: 'avaliacao', canActivate:[CheckLogged], component: AvaliacaoComponent }
         ]
       }
     ]
