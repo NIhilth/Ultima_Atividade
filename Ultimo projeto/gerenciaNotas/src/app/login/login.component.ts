@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   logar() {
     this.usuarioService.checarPessoa()
-    .then((resultado: (Object: (String|boolean)) => []) =>{
+    .then((resultado: (Object: (String|boolean)) => [] ) =>{
       for(let i = 0; i < resultado.length; i++){ 
         if(this.user === resultado[i].usuario && this.password === resultado[i].senha){
           if(resultado[i].validacao == true){
