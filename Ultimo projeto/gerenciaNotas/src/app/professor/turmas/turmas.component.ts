@@ -9,11 +9,11 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class TurmasComponent implements OnInit {
 
-  id
-  rg_professor
-  nome
-  sexo
-  url
+  id = ''
+  rg_professor = ''
+  nome = ''
+  sexo = ''
+  url = ''
   listaTurmas = []
   listaAlunos1 = []
   listaAlunos2 = []
@@ -49,7 +49,6 @@ export class TurmasComponent implements OnInit {
         for (let i = 0; i < result.length; i++) {
           let turma = result[i].NOME
           let nome_regente
-
           this.usuarioService.dadosProfessor()
             .then((resultado: (Object: (String)) => []) => {
               for (let j = 0; j < resultado.length; j++) {
@@ -114,8 +113,11 @@ export class TurmasComponent implements OnInit {
   }
 
   verPerfil() {
-    this.router.navigate(['professor/perfil'])
-    //arruma isso aqui mano
+    this.router.navigate(['professor/perfil', this.id])
+  }
+
+  verTurma(numero) {
+    this.router.navigate(['professor/turma', numero], {queryParams: {id: this.id}})
   }
 
 }

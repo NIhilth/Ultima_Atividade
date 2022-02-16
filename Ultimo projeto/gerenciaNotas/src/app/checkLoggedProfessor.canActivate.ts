@@ -24,6 +24,7 @@ class CheckLoggedProfessor implements CanActivate {
 
         if (user && password) {
             if (verifica == '1') {
+                console.log('foi checked')
                 return true;
             } else {
                 this.router.navigate([''])

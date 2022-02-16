@@ -14,13 +14,18 @@ const routes: Routes = [
     path: 'professor', children: [
       {
         path: ':id_professor', canActivate: [CheckLoggedProfessor], component: TurmasComponent, children: [
-          { path: 'alunos', canActivate: [CheckLoggedProfessor], component: AlunosComponent },
-          { path: 'avaliacao', canActivate: [CheckLoggedProfessor], component: AvaliacaoComponent },
-
+          { path: 'avaliacao', canActivate: [CheckLoggedProfessor], component: AvaliacaoComponent }
         ]
       },
       { path: '', component: LoginComponent },
-      { path: 'perfil', canActivate: [CheckLoggedProfessor], component: PerfilComponent }
+      {
+        path: 'turma', children: [
+          { path: ':id_turma', canActivate: [CheckLoggedProfessor], component: AlunosComponent }
+        ]
+      },
+      { path: 'perfil', canActivate: [CheckLoggedProfessor], children: [
+        {path: ':id_professor', component: PerfilComponent}
+      ]}
     ]
   }
 ]
