@@ -21,6 +21,7 @@ class CheckLoggedProfessor implements CanActivate {
         let user = localStorage.getItem("USER")
         let password = localStorage.getItem("PASSWORD")
         let verifica = localStorage.getItem("PROFESSOR")
+        let id = localStorage.getItem("ID")
 
         if (user && password) {
             if (verifica == '1') {
