@@ -9,7 +9,7 @@ database(`CREATE TABLE IF NOT EXISTS PESSOA (
     SENHA varchar(20) not null,
     PROFESSOR boolean not null
     )`).then(result => {
-        console.log("TABELA PESSOA CRIADA COM SUCESSO")
+    console.log("TABELA PESSOA CRIADA COM SUCESSO")
 }).catch(erro => {
     console.log("TABELA PESSOA COM ERRO NA CRIAÇÃO")
 });
@@ -19,36 +19,47 @@ database(`CREATE TABLE IF NOT EXISTS PROFESSOR (
     RG_PESSOA char(7) not null UNIQUE,
     foreign key (RG_PESSOA) references PESSOA (RG) on delete cascade on update cascade
     )`).then(result => {
-        console.log("TABELA PROFESSOR CRIADA COM SUCESSO")
+    console.log("TABELA PROFESSOR CRIADA COM SUCESSO")
 }).catch(erro => {
     console.log("TABELA PROFESSOR COM ERRO NA CRIAÇÃO")
 });
 
-
-database(`CREATE TABLE IF NOT EXISTS MATERIA (
-    CODIGO INTEGER PRIMARY KEY AUTOINCREMENT,
-    NOME varchar(30) not null,
-    CARGA_HORARIA int not null,
-    ID_PROFESSOR int not null,
-    foreign key (ID_PROFESSOR) references PROFESSOR(ID) on delete cascade on update cascade
-    )`).then(result => {
-        console.log("TABELA MATERIA CRIADA COM SUCESSO")
-}).catch(erro => {
-    console.log("TABELA MATERIA COM ERRO NA CRIAÇÃO")
-});
-
-
 database(`CREATE TABLE IF NOT EXISTS TURMA (
     ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    SIGLA varchar(6) not null,
     NOME varchar(30) not null,
     PROFESSOR_REGENTE int not null,
     foreign key (PROFESSOR_REGENTE) references PROFESSOR(ID) on delete cascade on update cascade
     )`).then(result => {
-        console.log("TABELA TURMA CRIADA COM SUCESSO")
+    console.log("TABELA TURMA CRIADA COM SUCESSO")
 }).catch(erro => {
     console.log("TABELA TURMA COM ERRO NA CRIAÇÃO")
 });
 
+database(`CREATE TABLE IF NOT EXISTS CURSO (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    NOME varchar(45) UNIQUE,
+    ID_TURMA integer not null,
+    foreign key (ID_TURMA) references TURMA (ID) on delete cascade on update cascade
+    )`).then(result => {
+    console.log("TABELA CURSO CRIADA COM SUCESSO")
+}).catch(erro => {
+    console.log("TABELA CURSO COM ERRO NA CRIAÇÃO")
+});
+
+database(`CREATE TABLE IF NOT EXISTS MATERIA (
+    CODIGO INTEGER PRIMARY KEY AUTOINCREMENT,
+    NOME varchar(30) not null ,
+    CARGA_HORARIA int not null,
+    ID_PROFESSOR int not null,
+    ID_CURSO int not null,
+    foreign key (ID_PROFESSOR) references PROFESSOR(ID) on delete cascade on update cascade,
+    foreign key (ID_CURSO) references CURSO(ID) on delete cascade on update cascade
+    )`).then(result => {
+    console.log("TABELA MATERIA CRIADA COM SUCESSO")
+}).catch(erro => {
+    console.log("TABELA MATERIA COM ERRO NA CRIAÇÃO")
+});
 
 database(`CREATE TABLE IF NOT EXISTS ALUNO (
     ID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -58,15 +69,16 @@ database(`CREATE TABLE IF NOT EXISTS ALUNO (
     foreign key (RG_PESSOA) references PESSOA (RG) on delete cascade on update cascade,
     foreign key (ID_TURMA) references TURMA (ID) on delete cascade on update cascade
     )`).then(result => {
-        console.log("TABELA ALUNO CRIADA COM SUCESSO")
+    console.log("TABELA ALUNO CRIADA COM SUCESSO")
 }).catch(erro => {
     console.log("TABELA ALUNO COM ERRO NA CRIAÇÃO")
 });
 
-database(`INSERT INTO TURMA VALUES (null,'Turma 203', 3), (null, 'Turma 301',4)
-`).then(result => {
+database(`INSERT INTO aluno VALUES (null, null, '1111111', 1), (null, null, '2222222', 1), (null, null, '4444444', 1),  (null, null, '5555555', 1),  (null, null, '1515151', 1), (null, null, '7777777', 2), (null, null, '1313131', 2), (null, null, '1414141', 2),  (null, null, '1616161', 2), (null, null, '1717171', 2)
+`)
+    .then(result => {
         console.log("DADOS CADASTRADOS COM SUCESSO ")
-}).catch(erro => {
-    console.log("DADOS NÃO CADASTRADOS ")
-});
+    }).catch(erro => {
+        console.log("DADOS NÃO CADASTRADOS ")
+    });
 
