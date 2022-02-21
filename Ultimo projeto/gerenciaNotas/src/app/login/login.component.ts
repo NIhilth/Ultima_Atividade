@@ -35,19 +35,21 @@ export class LoginComponent implements OnInit {
                   localStorage.setItem("USER", resultado[i].usuario)
                   localStorage.setItem("PASSWORD", resultado[i].senha)
                   localStorage.setItem("PROFESSOR", resultado[i].validacao )
+                  localStorage.setItem("ID", id_professor )
                   this.router.navigate(['professor', id_professor])
                 } 
               }
             } )
           } else {
             this.usuarioService.dadosAlunos()
-            .then((result: (Object: (String)) =>[]) => {
+            .then((result: (Object: (String)) => []) => {
               for(let j = 0; j < result.length ; j++){
                 if(result[j].RG_PESSOA === resultado[i].num){
                   let id_aluno = result[j].ID
                   localStorage.setItem("USER", resultado[i].usuario)
                   localStorage.setItem("PASSWORD", resultado[i].senha)
                   localStorage.setItem("PROFESSOR", resultado[i].validacao )
+                  localStorage.setItem("ID", id_aluno )
                   this.router.navigate(['/aluno/', id_aluno])
                 } 
               }

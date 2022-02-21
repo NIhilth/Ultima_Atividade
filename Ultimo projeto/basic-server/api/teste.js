@@ -2,14 +2,14 @@
 
 inserirRota('/teste_busca', (dados, resposta) => {
     console.log(dados);
-    database('SELECT * FROM PESSOA').then(result => {
+    database('SELECT * FROM MATERIA').then(result => {
         resposta({ resposta: result });
     }).catch(erro => {
         resposta({ resposta: erro });
     });
 });
 
-inserirRota('/teste_criar_tabela', (dados, resposta) => {
+inserirRota('/teste_criar_tabela',  (dados, resposta) => {
     console.log(dados);
     database(`CREATE TABLE IF NOT EXISTS TESTE (
         ID INTEGER PRIMARY KEY AUTOINCREMENT,
