@@ -46,7 +46,6 @@ class CheckLoggedProfessor implements CanActivate {
                                 }
                                 console.log('hum')
                             })
-                            break
                         }
                     }
                     console.log('blebleb')
