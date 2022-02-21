@@ -26,13 +26,18 @@ class CheckLoggedProfessor implements CanActivate {
         let id = localStorage.getItem("ID")
 
         if (user && password) {
+            console.log("user ", user, ", password ", password, " verifica ", verifica, " id ", id)
             if (verifica == '1') {
                 this.usuarioService.dadosPessoa()
                 .then((resultado: (Object: (String|boolean)) => [] ) => {
+                    console.log(resultado)
                     for(let i = 0; i < resultado.length; i++){
+                        console.log('hummmmmmmmmmmmmmmmmmm')
                         if(resultado[i].USUARIO === user && resultado[i].SENHA === password){
+                            console.log('foifoifoi')
                             this.usuarioService.dadosProfessor()
                             .then((result: (Object: (String)) =>[]) => {
+                                console.log(i)
                                 for(let j = 0; j< result.length; j++){
                                     if(id == result[j].ID){
                                         console.log("aaaa")
@@ -41,6 +46,7 @@ class CheckLoggedProfessor implements CanActivate {
                                 }
                                 console.log('hum')
                             })
+                            break
                         }
                     }
                     console.log('blebleb')

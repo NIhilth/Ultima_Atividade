@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
                   localStorage.setItem("USER", resultado[i].usuario)
                   localStorage.setItem("PASSWORD", resultado[i].senha)
                   localStorage.setItem("PROFESSOR", resultado[i].validacao )
-                  localStorage.setItem("ID",result[j].id_aluno )
+                  localStorage.setItem("ID", id_aluno )
                   this.router.navigate(['/aluno/', id_aluno])
                 } 
               }
