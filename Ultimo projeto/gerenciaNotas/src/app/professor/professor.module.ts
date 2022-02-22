@@ -13,7 +13,7 @@ const routes: Routes = [
   {
     path: 'professor', children: [
       {
-        path: ':id_professor', canActivate: [CheckLoggedProfessor], component: TurmasComponent, children: [
+        path: ':id_professor', canActivate: [CheckLoggedProfessor], component: PerfilComponent, children: [
           { path: 'avaliacao', canActivate: [CheckLoggedProfessor], component: AvaliacaoComponent }
         ]
       },
@@ -23,8 +23,8 @@ const routes: Routes = [
           { path: ':id_turma', canActivate: [CheckLoggedProfessor], component: AlunosComponent }
         ]
       },
-      { path: 'perfil', canActivate: [CheckLoggedProfessor], children: [
-        {path: ':id_professor', component: PerfilComponent}
+      { path: 'turmas', canActivate: [CheckLoggedProfessor], children: [
+        {path: ':id_professor', component: TurmasComponent}
       ]}
     ]
   }
