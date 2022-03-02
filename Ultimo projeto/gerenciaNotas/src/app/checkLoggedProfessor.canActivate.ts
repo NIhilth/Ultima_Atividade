@@ -15,6 +15,10 @@ class CheckLoggedProfessor implements CanActivate {
         private usuarioService: UsuarioService
     ) { }
 
+    url = this.router.url
+    urlNumber = Number(this.url.charAt(this.url.length - 2))
+    certificar 
+
     canActivate(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot,
@@ -23,46 +27,54 @@ class CheckLoggedProfessor implements CanActivate {
         let user = localStorage.getItem("USER")
         let password = localStorage.getItem("PASSWORD")
         let verifica = localStorage.getItem("PROFESSOR")
-        let id = localStorage.getItem("ID")
+        let id = Number(localStorage.getItem("ID"))
 
-        if (user && password) {
-            console.log("user ", user, ", password ", password, " verifica ", verifica, " id ", id)
-            if (verifica == '1') {
-                // this.usuarioService.dadosPessoa()
-                // .then((resultado: (Object: (String|boolean)) => [] ) => {
-                //     console.log(resultado)
-                //     for(let i = 0; i < resultado.length; i++){
-                //         console.log('hummmmmmmmmmmmmmmmmmm')
-                //         if(resultado[i].USUARIO === user && resultado[i].SENHA === password){
-                //             console.log('foifoifoi')
-                //             this.usuarioService.dadosProfessor()
-                //             .then((result: (Object: (String)) =>[]) => {
-                //                 console.log(i)
-                //                 for(let j = 0; j< result.length; j++){
-                //                     if(id == result[j].ID){
-                //                         console.log("aaaa")
-                //                         return true
-                //                     }
-                //                 }
-                //                 console.log('hum')
-                //             })
-                //         }
-                //     }
-                //     console.log('blebleb')
-                // })
-                console.log('foi checked')
-                return true
-            } else {
-                console.log("a meu caralho")
-                this.router.navigate([''])
-                return false;
-            }
-        } else {
+        if (!user && !password) {
             console.log("pqp")
             this.router.navigate([''])
             return false;
+        } else {
+            if (verifica != '1') {
+                console.log("a meu caralho")
+                this.router.navigate([''])
+                return false;
+            } else {
+                if (this.urlNumber != 0) {
+                    if (this.urlNumber != id) {
+                        console.log("pessoa erradaaaa")
+                        return false
+                    } else {
+                        console.log("FFFFFFFFFFFFFFFFFFoi")
+                        return true
+                    }
+                } else {
+                    this.usuarioService.dadosPessoa()
+                        .then((resultado: pessoa[]) => {
+                            this.certificar = resultado.find(valor => {
+                                if (valor.USUARIO === user && valor.SENHA === password) {
+                                    return true;
+                                }
+                            })
+                        })
+                }
+            }
+        }
+
+        if (this.certificar) {
+            return true
         }
     }
+}
+
+interface pessoa {
+    EMAIL: string
+    IDADE: number
+    NOME: string
+    PROFESSOR: boolean
+    RG: string
+    SENHA: string
+    SEXO: string
+    USUARIO: string
 }
 
 export default CheckLoggedProfessor;
