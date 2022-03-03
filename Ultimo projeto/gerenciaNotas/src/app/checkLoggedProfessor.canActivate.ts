@@ -24,45 +24,47 @@ class CheckLoggedProfessor implements CanActivate {
         state: RouterStateSnapshot,
     ): Observable<boolean> | Promise<boolean> | boolean {
 
-        let user = localStorage.getItem("USER")
-        let password = localStorage.getItem("PASSWORD")
-        let verifica = localStorage.getItem("PROFESSOR")
-        let id = Number(localStorage.getItem("ID"))
+        // let user = localStorage.getItem("USER")
+        // let password = localStorage.getItem("PASSWORD")
+        // let verifica = localStorage.getItem("PROFESSOR")
+        // let id = Number(localStorage.getItem("ID"))
 
-        if (!user && !password) {
-            console.log("pqp")
-            this.router.navigate([''])
-            return false;
-        } else {
-            if (verifica != '1') {
-                console.log("a meu caralho")
-                this.router.navigate([''])
-                return false;
-            } else {
-                if (this.urlNumber != 0) {
-                    if (this.urlNumber != id) {
-                        console.log("pessoa erradaaaa")
-                        return false
-                    } else {
-                        console.log("FFFFFFFFFFFFFFFFFFoi")
-                        return true
-                    }
-                } else {
-                    this.usuarioService.dadosPessoa()
-                        .then((resultado: pessoa[]) => {
-                            this.certificar = resultado.find(valor => {
-                                if (valor.USUARIO === user && valor.SENHA === password) {
-                                    return true;
-                                }
-                            })
-                        })
-                }
-            }
-        }
+        // if (!user && !password) {
+        //     console.log("pqp")
+        //     this.router.navigate([''])
+        //     return false;
+        // } else {
+        //     if (verifica != '1') {
+        //         console.log("a meu caralho")
+        //         this.router.navigate([''])
+        //         return false;
+        //     } else {
+        //         if (this.urlNumber != 0) {
+        //             if (this.urlNumber != id) {
+        //                 console.log("pessoa erradaaaa")
+        //                 return false
+        //             } else {
+        //                 console.log("FFFFFFFFFFFFFFFFFFoi")
+        //                 return true
+        //             }
+        //         } else {
+        //             this.usuarioService.dadosPessoa()
+        //                 .then((resultado: pessoa[]) => {
+        //                     this.certificar = resultado.find(valor => {
+        //                         if (valor.USUARIO === user && valor.SENHA === password) {
+        //                             return true;
+        //                         }
+        //                     })
+        //                 })
+        //         }
+        //     }
+        // }
 
-        if (this.certificar) {
-            return true
-        }
+        // if (this.certificar) {
+        //     return true
+        // }
+
+        return true
     }
 }
 

@@ -1,45 +1,39 @@
 <div id="body">
-  <div id="lado">
-    <div class="fundo">
-      <div class="container-info-professor">
-        <div class="container-imagem">
-          <img class="imagem"
-            [src]="sexo == 'F' ? 'https://img.icons8.com/external-wanicon-lineal-color-wanicon/64/000000/external-woman-avatar-wanicon-lineal-color-wanicon-4.png' : 'https://img.icons8.com/external-wanicon-lineal-color-wanicon/64/000000/external-man-avatar-wanicon-lineal-color-wanicon-7.png' "
-            alt="">
-        </div>
-        <div id="fundo-palavras">
-          <div id="branco">
-            <div id="info">
-              {{nome}}
-            </div>
-            <div id="info">
-              <span (click)="verPerfil()">
-                Ver perfil
-              </span>
-            </div>
-          </div>
-        </div>
+  <div class="first-column">
+    <div class="logo">
+      <img src="./assets/logo.png" style="width: 162.5px;">
+    </div>
+    <div class="div-professor">
+      <div class="foto-professor">
+        <img class="imagem"
+          [src]="sexo == 'F' ? 'https://img.icons8.com/external-wanicon-lineal-color-wanicon/64/000000/external-woman-avatar-wanicon-lineal-color-wanicon-4.png' : 'https://img.icons8.com/external-wanicon-lineal-color-wanicon/64/000000/external-man-avatar-wanicon-lineal-color-wanicon-7.png' ">
       </div>
+      <p> {{nome}}</p>
     </div>
   </div>
-  <div class="container-turmas">
-    <div id="turmas">
-      <div class="turma" *ngFor="let turma of listaTurmas;let i = index" (click)="verTurma(i+1)">
-        <div class="info-turma">
-          <h2>{{turma.nome_turma}}</h2>
-          <div id="nome-psor"> Professor regente: {{turma.prof_regente}}</div>
-        </div>
-        <div class="info-alunos" *ngIf="turma.numero==1">
-          <div *ngFor="let aluno of listaAlunos1; let i = index">
-            {{i + 1}} . {{aluno.nome}}
+  <div >
+    <div class="barra">
+    </div>
+    <div class="container-turmas">
+      <div id="turmas">
+        <div class="turma" *ngFor="let turma of listaTurmas;let i = index" (click)="verTurma(i+1)">
+          <div class="info-turma">
+            <h2>{{turma.nome_turma}}</h2>
+            <div id="nome-psor"> Professor regente: {{turma.prof_regente}}</div>
           </div>
-        </div>
-        <div class="info-alunos" *ngIf="turma.numero==2">
-          <div *ngFor="let aluno of listaAlunos2; let i = index">
-            {{i + 1}} . {{aluno.nome}}
+          <div class="info-alunos" *ngIf="turma.numero==1">
+            <div *ngFor="let aluno of listaAlunos1; let i = index">
+              {{i + 1}} . {{aluno.nome}}
+            </div>
+          </div>
+          <div class="info-alunos" *ngIf="turma.numero==2">
+            <div *ngFor="let aluno of listaAlunos2; let i = index">
+              {{i + 1}} . {{aluno.nome}}
+            </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </div>
