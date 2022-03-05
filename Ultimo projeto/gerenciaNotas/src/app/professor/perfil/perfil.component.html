@@ -19,18 +19,50 @@
       <h1> Inicio </h1>
     </div>
     <div id="container-abas">
-      <div class="aba">
+      <div style="background-color: #004764;" class="aba">
         <div id="div-botao" (click)="vai()">
           <span>Salas</span>
         </div>
-        <div id="numeroTurmas">
+        <div class="numeroTurmas">
           {{tamanho}}
-          <img id="imagem" src="https://img.icons8.com/material-outlined/24/ffffff/menu--v1.png"/>
+          <img class="imagem-icone" src="https://img.icons8.com/material-outlined/24/ffffff/menu--v1.png" />
         </div>
-
       </div>
-      <div class="aba">
-        Alunos
+      <div style="background-color: #00ABF0;" class="aba">
+        <div id="div-botao" (click)="vaiLista()">
+          <span>Alunos</span>
+        </div>
+        <div class="numeroTurmas">
+          {{alunos}}
+          <img class="imagem-icone" src="https://img.icons8.com/ios-glyphs/30/ffffff/crowd.png" />
+        </div>
+      </div>
+    </div>
+    <div class="Container-info-professor">
+      <div class="info-professor">
+        <div id="info">
+          <div class="foto-professor">
+            <img class="imagem"
+              [src]="sexo == 'F' ? 'https://img.icons8.com/external-wanicon-lineal-color-wanicon/64/000000/external-woman-avatar-wanicon-lineal-color-wanicon-4.png' : 'https://img.icons8.com/external-wanicon-lineal-color-wanicon/64/000000/external-man-avatar-wanicon-lineal-color-wanicon-7.png' ">
+          </div>
+          <div class="informacoes">
+            <div class="professor">
+              Usuário: {{nome}}
+            </div>
+            <div class="professor">
+              Email: {{email}}
+            </div>
+            <div class="professor">
+              Cargo: {{cargo}}
+            </div>
+          </div>
+        </div>
+        <div class="botao">
+          <button (click)="vaiPerfil()">Configurar Perfil</button>
+        </div>
+        <div class="botao">
+          <button (click)="deslogar()">Sair</button>
+        </div>
       </div>
     </div>
   </div>

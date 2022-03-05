@@ -17,7 +17,7 @@ class CheckLoggedProfessor implements CanActivate {
 
     url = this.router.url
     urlNumber = Number(this.url.charAt(this.url.length - 2))
-    certificar 
+    certificar
 
     canActivate(
         route: ActivatedRouteSnapshot,
@@ -30,21 +30,17 @@ class CheckLoggedProfessor implements CanActivate {
         // let id = Number(localStorage.getItem("ID"))
 
         // if (!user && !password) {
-        //     console.log("pqp")
         //     this.router.navigate([''])
         //     return false;
         // } else {
         //     if (verifica != '1') {
-        //         console.log("a meu caralho")
         //         this.router.navigate([''])
         //         return false;
         //     } else {
         //         if (this.urlNumber != 0) {
         //             if (this.urlNumber != id) {
-        //                 console.log("pessoa erradaaaa")
         //                 return false
         //             } else {
-        //                 console.log("FFFFFFFFFFFFFFFFFFoi")
         //                 return true
         //             }
         //         } else {
