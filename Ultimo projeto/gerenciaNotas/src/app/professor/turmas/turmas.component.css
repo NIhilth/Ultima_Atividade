@@ -71,6 +71,10 @@ body{
     height: 50%;
 }
 
+p{
+    text-align: center;
+}
+
 .container-imagem{
     display: flex;
     justify-content: center;

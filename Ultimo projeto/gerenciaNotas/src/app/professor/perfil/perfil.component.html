@@ -11,19 +11,26 @@
       <p> {{nome}}</p>
     </div>
   </div>
-  
+
   <div class="second-column">
     <div class="barra">
     </div>
-    <div>
-      <h1> Inicio </h1> 
+    <div id="titulo">
+      <h1> Inicio </h1>
     </div>
     <div id="container-abas">
       <div class="aba">
-        <button (click)="vai()">vai</button>
+        <div id="div-botao" (click)="vai()">
+          <span>Salas</span>
+        </div>
+        <div id="numeroTurmas">
+          {{tamanho}}
+          <img id="imagem" src="https://img.icons8.com/material-outlined/24/ffffff/menu--v1.png"/>
+        </div>
+
       </div>
       <div class="aba">
-        afdasdfgsftd-data-table
+        Alunos
       </div>
     </div>
   </div>
