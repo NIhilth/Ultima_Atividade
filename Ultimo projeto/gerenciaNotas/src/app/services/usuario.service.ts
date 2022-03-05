@@ -67,4 +67,14 @@ export class UsuarioService {
         .catch(reject)
     })
   }
+
+  dadosCurso(){
+    return new Promise((resolve,reject) =>{
+      fetch('/api/ver_curso',
+        { method: 'POST', headers: { 'Content-Type': 'application/json' } }
+      ).then(result => result.json())
+        .then(resolvido => resolve(resolvido))
+        .catch(reject)
+    })
+  }
 }

@@ -1,3 +1,30 @@
-<p>
-  perfil works!
-</p>
+<body>
+  <div class="first-column">
+    <div class="logo">
+      <img src="./assets/logo.png" style="width: 162.5px;">
+    </div>
+    <div class="div-professor">
+      <div class="foto-professor">
+        <img class="imagem"
+          [src]="sexo == 'F' ? 'https://img.icons8.com/external-wanicon-lineal-color-wanicon/64/000000/external-woman-avatar-wanicon-lineal-color-wanicon-4.png' : 'https://img.icons8.com/external-wanicon-lineal-color-wanicon/64/000000/external-man-avatar-wanicon-lineal-color-wanicon-7.png' ">
+      </div>
+      <p> {{nome}}</p>
+    </div>
+  </div>
+  
+  <div class="second-column">
+    <div class="barra">
+    </div>
+    <div>
+      <h1> Inicio </h1> 
+    </div>
+    <div id="container-abas">
+      <div class="aba">
+        <button (click)="vai()">vai</button>
+      </div>
+      <div class="aba">
+        afdasdfgsftd-data-table
+      </div>
+    </div>
+  </div>
+</body>
