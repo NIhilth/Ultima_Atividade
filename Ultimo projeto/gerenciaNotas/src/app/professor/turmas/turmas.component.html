@@ -16,29 +16,24 @@
     </div>
     <div class="container-turmas">
       <div id="turmas">
-        <div class="turma" *ngFor="let turma of listaTurma;">
+        <div class="turma" *ngFor="let turma of listaTurma;let i = index" (click)="verTurma(i + 1)">
           <div>
             {{turma.NOME}}
           </div>
+          <div>
+           {{listaRegentes[i]}}
+          </div>
+          <div class="aluno" *ngFor="let aluno of listaAlunos">
+            <div *ngIf="aluno.ID_TURMA == turma.ID else noCourses">
+              {{aluno.NOME}}
+            </div>
+          </div>
         </div>
-        <!-- <div class="turma" *ngFor="let turma of listaTurmas;let i = index" (click)="verTurma(i+1)">
-          <div class="info-turma">
-            <h2>{{turma.nome_turma}}</h2>
-            <div id="nome-psor"> Professor regente: {{turma.prof_regente}}</div>
-          </div>
-          <div class="info-alunos" *ngIf="turma.numero==1">
-            <div *ngFor="let aluno of listaAlunos1; let i = index">
-              {{i + 1}} . {{aluno.nome}}
-            </div>
-          </div>
-          <div class="info-alunos" *ngIf="turma.numero==2">
-            <div *ngFor="let aluno of listaAlunos2; let i = index">
-              {{i + 1}} . {{aluno.nome}}
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
-
   </div>
 </div>
+
+<ng-template #noCourses>
+  <div style="display: none;"></div>
+</ng-template>

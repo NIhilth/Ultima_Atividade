@@ -11,7 +11,7 @@
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background-color: lightskyblue;
+  background-color: #37c6ff;
   width: 330px;
   height: 430px;
   border-radius: 5px;
@@ -33,17 +33,19 @@
   height: 25px;
   border: none;
   border-radius: 15px;
-  background-color: cyan;
+  background-color: #004764;
   margin-bottom: 15px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
+  color: white;
 }
 
 #login button:hover {
   border: none;
   border-radius: 15px;
-  background: linear-gradient(90deg, Cyan);
+  background: white;
   cursor: pointer;
+  color: #004764;
 }
 
 #login input {

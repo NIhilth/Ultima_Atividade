@@ -25,41 +25,43 @@ class CheckLoggedStudent implements CanActivate {
         state: RouterStateSnapshot,
     ): Observable<boolean> | Promise<boolean> | boolean {
 
-        let user = localStorage.getItem("USER")
-        let password = localStorage.getItem("PASSWORD")
-        let verifica = localStorage.getItem("PROFESSOR")
-        let id = Number(localStorage.getItem("ID"))
+        // let user = localStorage.getItem("USER")
+        // let password = localStorage.getItem("PASSWORD")
+        // let verifica = localStorage.getItem("PROFESSOR")
+        // let id = Number(localStorage.getItem("ID"))
 
-        if (!user && !password) {
-            this.router.navigate([''])
-            return false;
-        } else {
-            if (verifica != '0') {
-                this.router.navigate([''])
-                return false;
-            } else {
-                if (this.urlNumber != 0) {
-                    if (this.urlNumber != id) {
-                        return false
-                    } else {
-                        return true
-                    }
-                } else {
-                    this.usuarioService.dadosPessoa()
-                        .then((resultado: pessoa[]) => {
-                            this.certificar = resultado.find(valor => {
-                                if (valor.USUARIO === user && valor.SENHA === password) {
-                                    return true;
-                                }
-                            })
-                        })
-                }
-            }
-        }
+        // if (!user && !password) {
+        //     this.router.navigate([''])
+        //     return false;
+        // } else {
+        //     if (verifica != '0') {
+        //         this.router.navigate([''])
+        //         return false;
+        //     } else {
+        //         if (this.urlNumber != 0) {
+        //             if (this.urlNumber != id) {
+        //                 return false
+        //             } else {
+        //                 return true
+        //             }
+        //         } else {
+        //             this.usuarioService.dadosPessoa()
+        //                 .then((resultado: pessoa[]) => {
+        //                     this.certificar = resultado.find(valor => {
+        //                         if (valor.USUARIO === user && valor.SENHA === password) {
+        //                             return true;
+        //                         }
+        //                     })
+        //                 })
+        //         }
+        //     }
+        // }
 
-        if (this.certificar) {
-            return true
-        }
+        // if (this.certificar) {
+        //     return true
+        // }
+
+        return true
     }
 }
 

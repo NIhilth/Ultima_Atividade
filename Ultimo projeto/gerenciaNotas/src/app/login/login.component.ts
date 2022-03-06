@@ -1,6 +1,6 @@
 import { UsuarioService } from './../services/usuario.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +11,10 @@ export class LoginComponent implements OnInit {
 
   user = ''
   password = ''
+  checou = false
 
   constructor(
     private usuarioService: UsuarioService,
-    private route: ActivatedRoute,
     private router: Router
   ) { }
 
@@ -31,13 +31,14 @@ export class LoginComponent implements OnInit {
             .then((result: (Object: (String)) =>[]) => {
               for(let j = 0; j < result.length ; j++){
                 if(result[j].RG_PESSOA === resultado[i].num){
+                  this.checou = true
                   let id_professor = result[j].ID
                   localStorage.setItem("USER", resultado[i].usuario)
                   localStorage.setItem("PASSWORD", resultado[i].senha)
                   localStorage.setItem("PROFESSOR", resultado[i].validacao )
                   localStorage.setItem("ID", id_professor )
                   this.router.navigate(['professor', id_professor])
-                } 
+                }
               }
             } )
           } else {
@@ -45,6 +46,7 @@ export class LoginComponent implements OnInit {
             .then((result: (Object: (String)) => []) => {
               for(let j = 0; j < result.length ; j++){
                 if(result[j].RG_PESSOA === resultado[i].num){
+                  this.checou = true
                   let id_aluno = result[j].ID
                   localStorage.setItem("USER", resultado[i].usuario)
                   localStorage.setItem("PASSWORD", resultado[i].senha)
@@ -55,7 +57,11 @@ export class LoginComponent implements OnInit {
               }
             } )
           }
-        } 
+        }
+      }
+
+      if(!this.checou){
+        alert("Senha ou Usuário inválidos")
       }
     })
     .catch(erro =>{

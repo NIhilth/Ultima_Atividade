@@ -9,12 +9,14 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class TurmasComponent implements OnInit {
 
-  id = ''
+  id
   rg_professor = ''
   nome = ''
   sexo = ''
   url = ''
   listaTurma = []
+  listaAlunos = []
+  listaRegentes = []
 
   constructor(
     private usuarioService: UsuarioService,
@@ -25,13 +27,12 @@ export class TurmasComponent implements OnInit {
     let url = this.router.url
     this.id = url.charAt(url.length - 1)
     this.usuarioService.dadosProfessor()
-      .then((result: (Object: (String)) => []) => {
-        for (let i = 0; i < result.length; i++) {
-          if (result[i].ID == this.id) {
-            this.rg_professor = result[i].RG_PESSOA
-
+      .then((result: professor[]) => {
+        result.find(valor => {
+          if (valor.ID == this.id) {
+            this.rg_professor = valor.RG_PESSOA
           }
-        }
+        })
       })
     this.usuarioService.dadosPessoa()
       .then((resultado: (Object: (String | boolean)) => []) => {
@@ -44,79 +45,67 @@ export class TurmasComponent implements OnInit {
       })
     this.usuarioService.dadosMateria()
       .then((result: materia[]) => {
-        result.find(valor =>{
-          if(valor.ID_PROFESSOR == this.id){
-           this.listaTurma.push(valor)
+        result.find(valor => {
+          if (valor.ID_PROFESSOR == this.id) {
+            this.usuarioService.dadosTurma()
+              .then((resultado: turma[]) => {
+                resultado.find(info => {
+                  if (info.ID_CURSO == valor.ID_CURSO) {
+                    let infoTurma = {
+                      NOME: valor.NOME,
+                      ID: info.ID
+                    }
+                    this.listaTurma.push(infoTurma)
+                    this.usuarioService.dadosAlunos()
+                      .then((resultadoALunos: alunos[]) => {
+                        console.log("alunos: ", resultadoALunos)
+                        resultadoALunos.find(valorAluno => {
+                          if (valorAluno.ID_TURMA == info.ID) {
+                            this.usuarioService.dadosPessoa()
+                              .then((resultadoPessoa: pessoa[]) => {
+                                resultadoPessoa.find(valorPessoa => {
+                                  if (valorPessoa.RG == valorAluno.RG_PESSOA) {
+                                    console.log()
+                                    let infoAluno = {
+                                      NOME: valorPessoa.NOME,
+                                      ID: valorAluno.ID ,
+                                      ID_TURMA: valorAluno.ID_TURMA
+                                    }
+                                    this.listaAlunos.push(infoAluno)
+                                  }
+                                })
+                              })
+                          }
+                        })
+                      })
+                  }
+                })
+              })
           }
         })
       })
-
-    // this.usuarioService.dadosTurma()
-    //   .then((result: (Object: (any)) => []) => {
-    //     for (let i = 0; i < result.length; i++) {
-    //       let turma = result[i].NOME
-    //       let nome_regente
-    //       this.usuarioService.dadosProfessor()
-    //         .then((resultado: (Object: (String)) => []) => {
-    //           for (let j = 0; j < resultado.length; j++) {
-    //             if (resultado[j].ID == result[i].PROFESSOR_REGENTE) {
-    //               let rg_pessoa_professor = resultado[j].RG_PESSOA
-    //               this.usuarioService.dadosPessoa()
-    //                 .then((resultadoPessoa: (Object: (String | boolean)) => []) => {
-    //                   for (let k = 0; k < resultadoPessoa.length; k++) {
-    //                     if (resultadoPessoa[k].RG == rg_pessoa_professor) {
-    //                       nome_regente = resultadoPessoa[k].NOME
-
-    //                       let info = {
-    //                         prof_regente: nome_regente,
-    //                         nome_turma: turma,
-    //                         numero: result[i].ID
-    //                       }
-
-    //                       this.listaTurmas.push(info)
-    //                     }
-    //                   }
-    //                 })
-    //             }
-    //           }
-    //         })
-    //     }
-    //   })
-    // this.usuarioService.dadosAlunos()
-    //   .then((result: (Object: (String)) => []) => {
-    //     for (let i = 0; i < result.length; i++) {
-    //       let nome_aluno = ''
-    //       let id_aluno = result[i].ID
-    //       let id_turma = result[i].ID_TURMA
-    //       let rg_aluno = result[i].RG_PESSOA
-    //       this.usuarioService.dadosPessoa()
-    //         .then((resultadoPessoa: (Object: (String | boolean)) => []) => {
-    //           for (let j = 0; j < resultadoPessoa.length; j++) {
-    //             if (rg_aluno == resultadoPessoa[j].RG) {
-    //               nome_aluno = resultadoPessoa[j].NOME
-
-    //               if (id_turma == 1) {
-    //                 let info = {
-    //                   id: id_aluno,
-    //                   nome: nome_aluno,
-    //                   turma: id_turma
-    //                 }
-
-    //                 this.listaAlunos1.push(info)
-    //               } else if (id_turma == 2) {
-    //                 let info = {
-    //                   id: id_aluno,
-    //                   nome: nome_aluno,
-    //                   turma: id_turma
-    //                 }
-
-    //                 this.listaAlunos2.push(info)
-    //               }
-    //             }
-    //           }
-    //         })
-    //     }
-    //   })
+    this.usuarioService.dadosTurma()
+      .then((resultado: turma[]) => {
+        resultado.find(valor => {
+          this.usuarioService.dadosProfessor()
+            .then((resultadoProfessor: professor[]) => {
+              resultadoProfessor.find(valorProfessor => {
+                if (valor.PROFESSOR_REGENTE == valorProfessor.ID) {
+                  this.usuarioService.dadosPessoa()
+                  .then((resultadoPessoa: pessoa[]) => {
+                    resultadoPessoa.find(valorPessoa => {
+                      if (valorPessoa.RG == valorProfessor.RG_PESSOA) {
+                        this.listaRegentes.push(valorPessoa.NOME)
+                      }
+                    })
+                  })
+                }
+              })
+            })
+        })
+      })
+      console.log(this.listaTurma)
+      console.log(this.listaAlunos)
   }
 
 
@@ -133,8 +122,39 @@ export class TurmasComponent implements OnInit {
 
 interface materia {
   CARGA_HORARIA: number
-  CODIGO: number
+  ID: number
   ID_CURSO: number
   ID_PROFESSOR: string
   NOME: string
+}
+
+interface turma {
+  ID: number
+  SIGLA: string
+  NOME: string
+  PROFESSOR_REGENTE: number
+  ID_CURSO: number
+}
+
+interface alunos {
+  ID: number
+  NOTA: number
+  RG_PESSOA: string
+  ID_TURMA: number
+}
+
+interface pessoa {
+  RG: string
+  NOME: string
+  IDADE: number
+  SEXO: string
+  EMAIL: string
+  USUARIO: string
+  SENHA: string
+  PROFESSOR: number
+}
+
+interface professor {
+  ID: number
+  RG_PESSOA: string
 }
