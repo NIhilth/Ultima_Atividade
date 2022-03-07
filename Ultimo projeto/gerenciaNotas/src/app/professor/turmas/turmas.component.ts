@@ -35,7 +35,7 @@ export class TurmasComponent implements OnInit {
         })
       })
     this.usuarioService.dadosPessoa()
-      .then((resultado: (Object: (String | boolean)) => []) => {
+      .then((resultado: pessoa[]) => {
         for (let i = 0; i < resultado.length; i++) {
           if (resultado[i].RG == this.rg_professor) {
             this.nome = resultado[i].NOME
@@ -58,14 +58,12 @@ export class TurmasComponent implements OnInit {
                     this.listaTurma.push(infoTurma)
                     this.usuarioService.dadosAlunos()
                       .then((resultadoALunos: alunos[]) => {
-                        console.log("alunos: ", resultadoALunos)
                         resultadoALunos.find(valorAluno => {
                           if (valorAluno.ID_TURMA == info.ID) {
                             this.usuarioService.dadosPessoa()
                               .then((resultadoPessoa: pessoa[]) => {
                                 resultadoPessoa.find(valorPessoa => {
                                   if (valorPessoa.RG == valorAluno.RG_PESSOA) {
-                                    console.log()
                                     let infoAluno = {
                                       NOME: valorPessoa.NOME,
                                       ID: valorAluno.ID ,
@@ -104,8 +102,6 @@ export class TurmasComponent implements OnInit {
             })
         })
       })
-      console.log(this.listaTurma)
-      console.log(this.listaAlunos)
   }
 
 

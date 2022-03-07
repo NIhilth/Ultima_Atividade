@@ -28,14 +28,14 @@ export class MateriasComponent implements OnInit {
         resultadoALunos.find(valorAluno => {
           if (valorAluno.ID == this.id){
             this.usuarioService.dadosPessoa()
-            .then((resultado: (Object: (String | boolean)) => []) => {
-              for (let i = 0; i < resultado.length; i++) {
-                if (resultado[i].RG == valorAluno.RG_PESSOA) {
-                  this.nome = resultado[i].NOME
-                  this.sexo = resultado[i].SEXO
-                  this.email = resultado[i].EMAIL
+            .then((resultado: pessoa[]) => {
+              resultado.find(valor => {
+                if(valor.RG == valorAluno.RG_PESSOA){
+                  this.nome = valor.NOME
+                  this.sexo = valor.SEXO
+                  this.email = valor.EMAIL
                 }
-              }
+              })
             })
           }
         })

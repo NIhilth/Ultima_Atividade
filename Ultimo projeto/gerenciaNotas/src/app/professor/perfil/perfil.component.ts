@@ -27,60 +27,57 @@ export class PerfilComponent implements OnInit {
   ngOnInit() {
     this.usuarioService.dadosMateria()
       .then((result: materia[]) => {
-        console.log(result)
         result.find(valor => {
           if (valor.ID_PROFESSOR == this.id) {
             this.listaTurma.push(valor)
-            console.log(this.listaTurma)
             this.tamanho = this.listaTurma.length
             this.usuarioService.dadosTurma()
-            .then((resultado: turma[]) =>{
-              console.log(resultado)
-              resultado.find(info => {
-                if(info.ID_CURSO == valor.ID_CURSO){
-                  this.usuarioService.dadosAlunos()
-                  .then((resultadoALunos: alunos[]) =>{
-                    resultadoALunos.find(valorAluno => {
-                      if(valorAluno.ID_TURMA == info.ID){
-                        this.alunos++
-                      }
-                    })
-                  })
-                }
+              .then((resultado: turma[]) => {
+                resultado.find(info => {
+                  if (info.ID_CURSO == valor.ID_CURSO) {
+                    this.usuarioService.dadosAlunos()
+                      .then((resultadoALunos: alunos[]) => {
+                        resultadoALunos.find(valorAluno => {
+                          if (valorAluno.ID_TURMA == info.ID) {
+                            this.alunos++
+                          }
+                        })
+                      })
+                  }
+                })
               })
-            })
           }
         })
       })
     let url = this.router.url
     this.id = url.charAt(url.length - 1)
     this.usuarioService.dadosProfessor()
-      .then((result: (Object: (String)) => []) => {
-        for (let i = 0; i < result.length; i++) {
-          if (result[i].ID == this.id) {
-            this.rg_professor = result[i].RG_PESSOA
+      .then((result: professor[]) => {
+        result.find(valorProfessor => {
+          if (valorProfessor.ID == this.id) {
+            this.rg_professor == valorProfessor.RG_PESSOA
           }
-        }
+        })
       })
     this.usuarioService.dadosPessoa()
-      .then((resultado: (Object: (String | boolean)) => []) => {
-        for (let i = 0; i < resultado.length; i++) {
-          if (resultado[i].RG == this.rg_professor) {
-            this.nome = resultado[i].NOME
-            this.sexo = resultado[i].SEXO
-            this.email = resultado[i].EMAIL
+      .then((resultado: pessoa[]) => {
+        resultado.find(valorPessoa => {
+          if (valorPessoa.RG == this.rg_professor) {
+            this.nome = valorPessoa.NOME
+            this.sexo = valorPessoa.SEXO
+            this.email = valorPessoa.EMAIL
           }
-        }
+        })
       })
     this.usuarioService.dadosTurma()
-    .then((resultado: turma[]) => {
-      this.cargo = "Professor"
-      resultado.find(valor => {
-        if(this.id == valor.PROFESSOR_REGENTE){
-          this.cargo = "Professor Regente"
-        }
+      .then((resultado: turma[]) => {
+        this.cargo = "Professor"
+        resultado.find(valor => {
+          if (this.id == valor.PROFESSOR_REGENTE) {
+            this.cargo = "Professor Regente"
+          }
+        })
       })
-    })
   }
 
   vai() {
@@ -106,7 +103,7 @@ export class PerfilComponent implements OnInit {
 }
 
 interface materia {
-  ID: number  
+  ID: number
   NOME: string
   CARGA_HORARIA: number
   ID_PROFESSOR: string
@@ -115,7 +112,7 @@ interface materia {
 }
 
 interface turma {
-  ID: number 
+  ID: number
   SIGLA: string
   NOME: string
   PROFESSOR_REGENTE: string
@@ -127,4 +124,21 @@ interface alunos {
   NOTA: number
   RG_PESSOA: string
   ID_TURMA: number
+}
+
+
+interface professor {
+  ID: number
+  RG_PESSOA: string
+}
+
+interface pessoa {
+  RG: string
+  NOME: string
+  IDADE: number
+  SEXO: string
+  EMAIL: string
+  USUARIO: string
+  SENHA: string
+  PROFESSOR: number
 }

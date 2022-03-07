@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
 
   user = ''
   password = ''
-  checou = false
+  checou 
 
   constructor(
     private usuarioService: UsuarioService,
@@ -23,51 +23,70 @@ export class LoginComponent implements OnInit {
 
   logar() {
     this.usuarioService.checarPessoa()
-    .then((resultado: (Object: (String|boolean)) => [] ) =>{
-      for(let i = 0; i < resultado.length; i++){ 
-        if(this.user === resultado[i].usuario && this.password === resultado[i].senha){
-          if(resultado[i].validacao == true){
-            this.usuarioService.dadosProfessor()
-            .then((result: (Object: (String)) =>[]) => {
-              for(let j = 0; j < result.length ; j++){
-                if(result[j].RG_PESSOA === resultado[i].num){
-                  this.checou = true
-                  let id_professor = result[j].ID
-                  localStorage.setItem("USER", resultado[i].usuario)
-                  localStorage.setItem("PASSWORD", resultado[i].senha)
-                  localStorage.setItem("PROFESSOR", resultado[i].validacao )
-                  localStorage.setItem("ID", id_professor )
-                  this.router.navigate(['professor', id_professor])
-                }
-              }
-            } )
-          } else {
-            this.usuarioService.dadosAlunos()
-            .then((result: (Object: (String)) => []) => {
-              for(let j = 0; j < result.length ; j++){
-                if(result[j].RG_PESSOA === resultado[i].num){
-                  this.checou = true
-                  let id_aluno = result[j].ID
-                  localStorage.setItem("USER", resultado[i].usuario)
-                  localStorage.setItem("PASSWORD", resultado[i].senha)
-                  localStorage.setItem("PROFESSOR", resultado[i].validacao )
-                  localStorage.setItem("ID", id_aluno )
-                  this.router.navigate(['/aluno/', id_aluno])
-                } 
-              }
-            } )
+      .then((resultado: checarPessoa[]) => {
+        resultado.find(valorPessoa => {
+          if (this.user === valorPessoa.usuario && this.password === valorPessoa.senha) {
+            if (valorPessoa.validacao == true) {
+              this.usuarioService.dadosProfessor()
+                .then((result: professor[]) => {
+                  result.find(valorProfessor => {
+                    if (valorProfessor.RG_PESSOA === valorProfessor.RG_PESSOA) {
+                      this.checou = true
+                      let id_professor = valorProfessor.ID
+                      localStorage.setItem("USER", valorPessoa.usuario)
+                      localStorage.setItem("PASSWORD", valorPessoa.senha)
+                      localStorage.setItem("PROFESSOR", valorPessoa.validacao.toString())
+                      localStorage.setItem("ID", id_professor)
+                      this.router.navigate(['professor', id_professor])
+                      return
+                    }
+                  })
+                })
+            } else {
+              this.usuarioService.dadosAlunos()
+                .then((result: alunos[]) => {
+                  result.find(valorAluno => {
+                    if (valorAluno.RG_PESSOA === valorAluno.RG_PESSOA) {
+                      this.checou = true
+                      let id_aluno = valorAluno.ID
+                      localStorage.setItem("USER", valorPessoa.usuario)
+                      localStorage.setItem("PASSWORD", valorPessoa.senha)
+                      localStorage.setItem("PROFESSOR", valorPessoa.validacao.toString())
+                      localStorage.setItem("ID", id_aluno)
+                      this.router.navigate(['aluno', id_aluno])
+                      return
+                    }
+                  })
+                })
+            }
           }
-        }
-      }
-
-      if(!this.checou){
-        alert("Senha ou Usuário inválidos")
-      }
-    })
-    .catch(erro =>{
-      console.log('deu mal', erro)
-    })
+        })
+      })
+      .catch(erro => {
+        console.log('deu mal', erro)
+      })
+    if (this.checou == false) {
+      alert("Senha ou Usuário inválidos")
+    } 
   }
 
 }
-   
+
+interface checarPessoa {
+  usuario: string,
+  senha: string,
+  validacao: boolean,
+  num: string
+}
+
+interface professor {
+  ID: string
+  RG_PESSOA: string
+}
+
+interface alunos {
+  ID: string
+  NOTA: number
+  RG_PESSOA: string
+  ID_TURMA: number
+}
