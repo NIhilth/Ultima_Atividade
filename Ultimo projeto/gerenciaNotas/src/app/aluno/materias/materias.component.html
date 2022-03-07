@@ -6,7 +6,7 @@
     <div class="div-professor">
       <div class="foto-professor">
         <img class="imagem"
-          [src]="sexo == 'F' ? 'https://img.icons8.com/external-wanicon-lineal-color-wanicon/64/000000/external-woman-avatar-wanicon-lineal-color-wanicon-4.png' : 'https://img.icons8.com/external-wanicon-lineal-color-wanicon/64/000000/external-man-avatar-wanicon-lineal-color-wanicon-7.png' ">
+          [src]="sexo == 'F' ? 'https://img.icons8.com/dusk/64/000000/student-female.png' : 'https://img.icons8.com/dusk/64/000000/student-male.png' ">
       </div>
       <p> {{nome}}</p>
     </div>
@@ -21,7 +21,7 @@
     <div id="container-abas">
       <div style="background-color: #004764;" class="aba">
         <div id="div-botao" (click)="vai()">
-          <span>Salas</span>
+          <span>Materias</span>
         </div>
         <div class="numeroTurmas">
           {{tamanho}}
@@ -30,10 +30,10 @@
       </div>
       <div style="background-color: #00ABF0;" class="aba">
         <div id="div-botao" (click)="vaiLista()">
-          <span>Alunos</span>
+          <span>Professores</span>
         </div>
         <div class="numeroTurmas">
-          {{alunos}}
+          {{tamanho}}
           <img class="imagem-icone" src="https://img.icons8.com/ios-glyphs/30/ffffff/crowd.png" />
         </div>
       </div>
@@ -43,7 +43,7 @@
         <div id="info">
           <div class="foto-professor">
             <img class="imagem"
-              [src]="sexo == 'F' ? 'https://img.icons8.com/external-wanicon-lineal-color-wanicon/64/000000/external-woman-avatar-wanicon-lineal-color-wanicon-4.png' : 'https://img.icons8.com/external-wanicon-lineal-color-wanicon/64/000000/external-man-avatar-wanicon-lineal-color-wanicon-7.png' ">
+              [src]="sexo == 'F' ? 'https://img.icons8.com/dusk/64/000000/student-female.png' : 'https://img.icons8.com/dusk/64/000000/student-male.png' ">
           </div>
           <div class="informacoes">
             <div class="professor">
@@ -52,16 +52,13 @@
             <div class="professor">
               Email: {{email}}
             </div>
-            <div class="professor">
-              Cargo: {{cargo}}
-            </div>
           </div>
         </div>
-        <div class="botao">
-          <button (click)="vaiPerfil()">Configurar Perfil</button>
+        <div (click)="vaiPerfil()" class="botao">
+          <button >Configurar Perfil</button>
         </div>
-        <div class="botao">
-          <button (click)="deslogar()">Sair</button>
+        <div (click)="deslogar()" class="botao">
+          <button >Sair</button>
         </div>
       </div>
     </div>

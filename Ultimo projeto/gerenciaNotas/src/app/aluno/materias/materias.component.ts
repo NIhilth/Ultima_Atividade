@@ -13,6 +13,7 @@ export class MateriasComponent implements OnInit {
   id
   sexo
   email
+  tamanho = 0
 
   constructor(
     private router: Router,
@@ -21,80 +22,76 @@ export class MateriasComponent implements OnInit {
 
   ngOnInit() {
     let url = this.router.url
-    this.id = url.charAt(url.length - 1)
+    let numero = url.length
+    let num2 = numero - 2
+    this.id = url.substring(num2, numero)
     this.usuarioService.dadosAlunos()
-      .then((resultadoALunos: alunos[]) => { 
-        console.log(resultadoALunos)
+      .then((resultadoALunos: any) => {
         resultadoALunos.find(valorAluno => {
-          if (valorAluno.ID == this.id){
+          if (valorAluno.ID == this.id) {
             this.usuarioService.dadosPessoa()
-            .then((resultado: pessoa[]) => {
-              resultado.find(valor => {
-                if(valor.RG == valorAluno.RG_PESSOA){
-                  this.nome = valor.NOME
-                  this.sexo = valor.SEXO
-                  this.email = valor.EMAIL
-                }
+              .then((resultado: any) => {
+                resultado.find(valor => {
+                  if (valor.RG == valorAluno.RG_PESSOA) {
+                    this.nome = valor.NOME
+                    this.sexo = valor.SEXO
+                    this.email = valor.EMAIL
+                  }
+                })
               })
-            })
           }
         })
       })
-    }
+    this.usuarioService.dadosAlunos()
+    .then((resultadoAluno: any) => {
+      resultadoAluno.find(valorAluno => {
+        if(valorAluno.ID == this.id){
+          this.usuarioService.dadosTurma()
+          .then((resultadoTurma: any) => {
+            resultadoTurma.find(valorTurma => {
+              if(valorTurma.ID == valorAluno.ID_TURMA){
+                this.usuarioService.dadosCurso()
+                .then((resultadoCurso: any) => {
+                  resultadoCurso.find(valorCurso => {
+                    if(valorCurso.ID == valorTurma.ID_CURSO){
+                      this.usuarioService.dadosMateria()
+                      .then((resultadoMateria: any) => {
+                        resultadoMateria.find(valorMateria => {
+                          if(valorMateria.ID_CURSO == valorCurso.ID){
+                            this.tamanho++
+                          }
+                        })
+                      })
+                    }
+                  })
+                })
+              }
+            })
+          })
+        }
+      })
+    })
+
+  }
 
   vai() {
-        // this.router.navigate(['professor/turmas', this.id])
-      }
+    // this.router.navigate(['professor/turmas', this.id])
+  }
 
   vaiLista() {
-        //this.router.navigate(['professor/lista', this.id])
-      }
+    //this.router.navigate(['professor/lista', this.id])
+  }
 
   vaiPerfil() {
-        //this.router.navigate(['professor/informacoes', this.id])
-      }
+    //this.router.navigate(['professor/informacoes', this.id])
+  }
 
   deslogar() {
-        localStorage.setItem("USER", '')
+    localStorage.setItem("USER", '')
     localStorage.setItem("PASSWORD", '')
     localStorage.setItem("PROFESSOR", null)
     localStorage.setItem("ID", null)
     this.router.navigate([''])
-      }
+  }
 
-}
-
-interface materia {
-  ID: number
-  NOME: string
-  CARGA_HORARIA: number
-  ID_PROFESSOR: string
-  ID_CURSO: number
-
-}
-
-interface turma {
-  ID: number
-  SIGLA: string
-  NOME: string
-  PROFESSOR_REGENTE: string
-  ID_CURSO: number
-}
-
-interface alunos {
-  ID: number
-  NOTA: number
-  RG_PESSOA: string
-  ID_TURMA: number
-}
-
-interface pessoa {
-  RG: string
-  NOME: string
-  IDADE: number
-  SEXO: string
-  EMAIL: string
-  USUARIO: string
-  SENHA: string
-  PROFESSOR: number
 }

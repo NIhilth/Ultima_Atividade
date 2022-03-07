@@ -27,7 +27,7 @@ export class TurmasComponent implements OnInit {
     let url = this.router.url
     this.id = url.charAt(url.length - 1)
     this.usuarioService.dadosProfessor()
-      .then((result: professor[]) => {
+      .then((result: any) => {
         result.find(valor => {
           if (valor.ID == this.id) {
             this.rg_professor = valor.RG_PESSOA
@@ -35,7 +35,7 @@ export class TurmasComponent implements OnInit {
         })
       })
     this.usuarioService.dadosPessoa()
-      .then((resultado: pessoa[]) => {
+      .then((resultado: any) => {
         for (let i = 0; i < resultado.length; i++) {
           if (resultado[i].RG == this.rg_professor) {
             this.nome = resultado[i].NOME
@@ -44,11 +44,11 @@ export class TurmasComponent implements OnInit {
         }
       })
     this.usuarioService.dadosMateria()
-      .then((result: materia[]) => {
+      .then((result: any) => {
         result.find(valor => {
           if (valor.ID_PROFESSOR == this.id) {
             this.usuarioService.dadosTurma()
-              .then((resultado: turma[]) => {
+              .then((resultado: any) => {
                 resultado.find(info => {
                   if (info.ID_CURSO == valor.ID_CURSO) {
                     let infoTurma = {
@@ -57,11 +57,11 @@ export class TurmasComponent implements OnInit {
                     }
                     this.listaTurma.push(infoTurma)
                     this.usuarioService.dadosAlunos()
-                      .then((resultadoALunos: alunos[]) => {
+                      .then((resultadoALunos: any) => {
                         resultadoALunos.find(valorAluno => {
                           if (valorAluno.ID_TURMA == info.ID) {
                             this.usuarioService.dadosPessoa()
-                              .then((resultadoPessoa: pessoa[]) => {
+                              .then((resultadoPessoa: any) => {
                                 resultadoPessoa.find(valorPessoa => {
                                   if (valorPessoa.RG == valorAluno.RG_PESSOA) {
                                     let infoAluno = {
@@ -83,14 +83,14 @@ export class TurmasComponent implements OnInit {
         })
       })
     this.usuarioService.dadosTurma()
-      .then((resultado: turma[]) => {
+      .then((resultado: any) => {
         resultado.find(valor => {
           this.usuarioService.dadosProfessor()
-            .then((resultadoProfessor: professor[]) => {
+            .then((resultadoProfessor: any) => {
               resultadoProfessor.find(valorProfessor => {
                 if (valor.PROFESSOR_REGENTE == valorProfessor.ID) {
                   this.usuarioService.dadosPessoa()
-                  .then((resultadoPessoa: pessoa[]) => {
+                  .then((resultadoPessoa: any) => {
                     resultadoPessoa.find(valorPessoa => {
                       if (valorPessoa.RG == valorProfessor.RG_PESSOA) {
                         this.listaRegentes.push(valorPessoa.NOME)
@@ -114,43 +114,4 @@ export class TurmasComponent implements OnInit {
     this.router.navigate(['professor/turma', numero], { queryParams: { id: this.id } })
   }
 
-}
-
-interface materia {
-  CARGA_HORARIA: number
-  ID: number
-  ID_CURSO: number
-  ID_PROFESSOR: string
-  NOME: string
-}
-
-interface turma {
-  ID: number
-  SIGLA: string
-  NOME: string
-  PROFESSOR_REGENTE: number
-  ID_CURSO: number
-}
-
-interface alunos {
-  ID: number
-  NOTA: number
-  RG_PESSOA: string
-  ID_TURMA: number
-}
-
-interface pessoa {
-  RG: string
-  NOME: string
-  IDADE: number
-  SEXO: string
-  EMAIL: string
-  USUARIO: string
-  SENHA: string
-  PROFESSOR: number
-}
-
-interface professor {
-  ID: number
-  RG_PESSOA: string
 }

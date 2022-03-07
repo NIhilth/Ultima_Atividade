@@ -23,37 +23,40 @@ export class LoginComponent implements OnInit {
 
   logar() {
     this.usuarioService.checarPessoa()
-      .then((resultado: checarPessoa[]) => {
+      .then((resultado: any) => {
         resultado.find(valorPessoa => {
           if (this.user === valorPessoa.usuario && this.password === valorPessoa.senha) {
             if (valorPessoa.validacao == true) {
               this.usuarioService.dadosProfessor()
-                .then((result: professor[]) => {
+                .then((result: any) => {
                   result.find(valorProfessor => {
-                    if (valorProfessor.RG_PESSOA === valorProfessor.RG_PESSOA) {
+                    if (valorPessoa.num == valorProfessor.RG_PESSOA) {
                       this.checou = true
                       let id_professor = valorProfessor.ID
                       localStorage.setItem("USER", valorPessoa.usuario)
                       localStorage.setItem("PASSWORD", valorPessoa.senha)
                       localStorage.setItem("PROFESSOR", valorPessoa.validacao.toString())
                       localStorage.setItem("ID", id_professor)
-                      this.router.navigate(['professor', id_professor])
+                      this.router.navigate(['professor/', id_professor])
                       return
                     }
                   })
                 })
             } else {
               this.usuarioService.dadosAlunos()
-                .then((result: alunos[]) => {
+                .then((result: any) => {
+                  console.log(result)
                   result.find(valorAluno => {
-                    if (valorAluno.RG_PESSOA === valorAluno.RG_PESSOA) {
+                    if (valorPessoa.num == valorAluno.RG_PESSOA) {
+                      console.log(valorAluno)
                       this.checou = true
                       let id_aluno = valorAluno.ID
                       localStorage.setItem("USER", valorPessoa.usuario)
                       localStorage.setItem("PASSWORD", valorPessoa.senha)
                       localStorage.setItem("PROFESSOR", valorPessoa.validacao.toString())
                       localStorage.setItem("ID", id_aluno)
-                      this.router.navigate(['aluno', id_aluno])
+                      id_aluno = '0' + id_aluno
+                      this.router.navigate(['aluno/', id_aluno])
                       return
                     }
                   })
@@ -70,23 +73,4 @@ export class LoginComponent implements OnInit {
     } 
   }
 
-}
-
-interface checarPessoa {
-  usuario: string,
-  senha: string,
-  validacao: boolean,
-  num: string
-}
-
-interface professor {
-  ID: string
-  RG_PESSOA: string
-}
-
-interface alunos {
-  ID: string
-  NOTA: number
-  RG_PESSOA: string
-  ID_TURMA: number
 }

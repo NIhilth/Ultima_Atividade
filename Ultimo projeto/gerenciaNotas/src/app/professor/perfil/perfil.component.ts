@@ -9,12 +9,12 @@ import { Router } from '@angular/router';
 })
 export class PerfilComponent implements OnInit {
 
-  id
-  rg_professor
-  nome
-  sexo
-  email
-  cargo
+  id 
+  rg_professor = ''
+  nome = ''
+  sexo = ''
+  email = ''
+  cargo = ''
   listaTurma = []
   tamanho
   alunos = 0
@@ -26,17 +26,17 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioService.dadosMateria()
-      .then((result: materia[]) => {
+      .then((result: any) => {
         result.find(valor => {
           if (valor.ID_PROFESSOR == this.id) {
             this.listaTurma.push(valor)
             this.tamanho = this.listaTurma.length
             this.usuarioService.dadosTurma()
-              .then((resultado: turma[]) => {
+              .then((resultado: any) => {
                 resultado.find(info => {
                   if (info.ID_CURSO == valor.ID_CURSO) {
                     this.usuarioService.dadosAlunos()
-                      .then((resultadoALunos: alunos[]) => {
+                      .then((resultadoALunos: any) => {
                         resultadoALunos.find(valorAluno => {
                           if (valorAluno.ID_TURMA == info.ID) {
                             this.alunos++
@@ -52,15 +52,17 @@ export class PerfilComponent implements OnInit {
     let url = this.router.url
     this.id = url.charAt(url.length - 1)
     this.usuarioService.dadosProfessor()
-      .then((result: professor[]) => {
+      .then((result: any) => {
+        console.log("professor: ", result)
         result.find(valorProfessor => {
           if (valorProfessor.ID == this.id) {
-            this.rg_professor == valorProfessor.RG_PESSOA
+            this.rg_professor = valorProfessor.RG_PESSOA
+            console.log(valorProfessor.RG_PESSOA)
           }
         })
       })
     this.usuarioService.dadosPessoa()
-      .then((resultado: pessoa[]) => {
+      .then((resultado: any) => {
         resultado.find(valorPessoa => {
           if (valorPessoa.RG == this.rg_professor) {
             this.nome = valorPessoa.NOME
@@ -70,7 +72,7 @@ export class PerfilComponent implements OnInit {
         })
       })
     this.usuarioService.dadosTurma()
-      .then((resultado: turma[]) => {
+      .then((resultado: any) => {
         this.cargo = "Professor"
         resultado.find(valor => {
           if (this.id == valor.PROFESSOR_REGENTE) {
@@ -78,6 +80,8 @@ export class PerfilComponent implements OnInit {
           }
         })
       })
+
+      console.log(this.sexo)
   }
 
   vai() {
@@ -100,45 +104,4 @@ export class PerfilComponent implements OnInit {
     this.router.navigate([''])
   }
 
-}
-
-interface materia {
-  ID: number
-  NOME: string
-  CARGA_HORARIA: number
-  ID_PROFESSOR: string
-  ID_CURSO: number
-
-}
-
-interface turma {
-  ID: number
-  SIGLA: string
-  NOME: string
-  PROFESSOR_REGENTE: string
-  ID_CURSO: number
-}
-
-interface alunos {
-  ID_ALUNO: number
-  NOTA: number
-  RG_PESSOA: string
-  ID_TURMA: number
-}
-
-
-interface professor {
-  ID: number
-  RG_PESSOA: string
-}
-
-interface pessoa {
-  RG: string
-  NOME: string
-  IDADE: number
-  SEXO: string
-  EMAIL: string
-  USUARIO: string
-  SENHA: string
-  PROFESSOR: number
 }
