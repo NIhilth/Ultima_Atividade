@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router';
@@ -6,6 +6,10 @@ import { MateriasComponent } from './materias/materias.component';
 import { MateriaComponent } from './materia/materia.component';
 import CheckLoggedStudent from '../checkLoggedStudent.canActivate'
 import { LoginComponent } from '../login/login.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+
 
 const routes: Routes = [
   {
@@ -17,6 +21,13 @@ const routes: Routes = [
       },
       {
         path: '', component: LoginComponent
+      },
+      {
+        path: 'perfil', children: [
+          {
+            path: ':id_aluno', canActivate: [CheckLoggedStudent] ,component: PerfilComponent
+          }
+        ]
       }
     ]
   }
@@ -25,8 +36,10 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
-    CommonModule
+    CommonModule,
+    FormsModule,
+    BrowserModule
   ],
-  declarations: [MateriasComponent, MateriaComponent]
+  declarations: [MateriasComponent, MateriaComponent, PerfilComponent]
 })
 export class AlunoModule { }

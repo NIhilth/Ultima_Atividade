@@ -8,6 +8,7 @@ import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 import CheckLoggedProfessor from '../checkLoggedProfessor.canActivate';
 import { LoginComponent } from '../login/login.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { InfoProfessorComponent } from './info-professor/info-professor.component';
 
 const routes: Routes = [
   {
@@ -23,9 +24,18 @@ const routes: Routes = [
           { path: ':id_turma', canActivate: [CheckLoggedProfessor], component: AlunosComponent }
         ]
       },
-      { path: 'turmas', canActivate: [CheckLoggedProfessor], children: [
-        {path: ':id_professor', component: TurmasComponent}
-      ]}
+      {
+        path: 'turmas', canActivate: [CheckLoggedProfessor], children: [
+          { path: ':id_professor', component: TurmasComponent }
+        ]
+      },
+      // {
+      //   path: 'informacoes', children: [
+      //     {
+      //       path:
+      //     }
+      //   ]
+      // }
     ]
   }
 ]
@@ -35,6 +45,6 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     CommonModule
   ],
-  declarations: [TurmasComponent, AlunosComponent, AvaliacaoComponent, PerfilComponent]
+  declarations: [TurmasComponent, AlunosComponent, AvaliacaoComponent, PerfilComponent, InfoProfessorComponent]
 })
 export class ProfessorModule { }

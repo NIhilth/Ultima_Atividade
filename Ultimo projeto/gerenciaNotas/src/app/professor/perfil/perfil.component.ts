@@ -93,7 +93,7 @@ export class PerfilComponent implements OnInit {
   }
 
   vaiPerfil() {
-    //this.router.navigate(['professor/informacoes', this.id])
+    this.router.navigate(['professor/informacoes', this.id])
   }
 
   deslogar() {

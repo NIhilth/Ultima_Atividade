@@ -3,17 +3,20 @@ import { Router } from '@angular/router';
 import { UsuarioService } from './../../services/usuario.service';
 
 @Component({
-  selector: 'app-materias',
-  templateUrl: './materias.component.html',
-  styleUrls: ['./materias.component.css']
+  selector: 'app-perfil',
+  templateUrl: './perfil.component.html',
+  styleUrls: ['./perfil.component.css']
 })
-export class MateriasComponent implements OnInit {
-
-  nome
+export class PerfilComponent implements OnInit {
+  nome = ''
   id
-  sexo
-  email
+  rg = ''
+  rg_velho = ''
+  sexo = ''
+  email = ''
   tamanho = 0
+  usuario = ''
+  senha = ''
 
   constructor(
     private router: Router,
@@ -31,12 +34,15 @@ export class MateriasComponent implements OnInit {
           if (valorAluno.ID == this.id) {
             this.usuarioService.dadosPessoa()
               .then((resultado: any) => {
-                console.log(resultado)
                 resultado.find(valor => {
                   if (valor.RG == valorAluno.RG_PESSOA) {
                     this.nome = valor.NOME
                     this.sexo = valor.SEXO
                     this.email = valor.EMAIL
+                    this.rg = valor.RG
+                    this.rg_velho = valor.RG
+                    this.usuario = valor.USUARIO
+                    this.senha = valor.SENHA
                   }
                 })
               })
@@ -83,16 +89,14 @@ export class MateriasComponent implements OnInit {
     //this.router.navigate(['professor/lista', this.id])
   }
 
-  vaiPerfil() {
-      this.router.navigate(['aluno/perfil', this.id])
+  mudarPerfil() {
+    this.usuarioService.mudarPessoa(this.rg, this.nome, this.email, this.usuario, this.senha, this.rg_velho)
+    this.router.navigate(['aluno/', this.id])
   }
 
-  deslogar() {
-    localStorage.setItem("USER", '')
-    localStorage.setItem("PASSWORD", '')
-    localStorage.setItem("PROFESSOR", null)
-    localStorage.setItem("ID", null)
-    this.router.navigate([''])
+  voltar() {
+    this.router.navigate(['aluno/', this.id])
   }
+
 
 }

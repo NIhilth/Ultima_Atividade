@@ -82,3 +82,14 @@ inserirRota('/ver_curso', function (dados, resposta){
         resposta({ erro })
     })
 })
+
+inserirRota('/alterar_pessoa', function (dados, resposta){
+    database(`UPDATE PESSOA SET RG = "${dados.RG}", NOME = "${dados.NOME}", EMAIL = "${dados.EMAIL}", SENHA = "${dados.SENHA}", USUARIO = "${dados.USER}" where RG = "${dados.RG_ANTIGO}"`)
+    .then(result =>{
+        resposta(result)
+    }).catch(erro => {
+        console.log('DEU BOSTA')
+        resposta({ erro })
+    })
+})
+
