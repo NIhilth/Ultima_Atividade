@@ -8,13 +8,14 @@ import { UsuarioService } from './../../services/usuario.service';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
+  
+  nome_velho = ''
   nome = ''
   id
   rg = ''
   rg_velho = ''
   sexo = ''
   email = ''
-  tamanho = 0
   usuario = ''
   senha = ''
 
@@ -36,6 +37,7 @@ export class PerfilComponent implements OnInit {
               .then((resultado: any) => {
                 resultado.find(valor => {
                   if (valor.RG == valorAluno.RG_PESSOA) {
+                    this.nome_velho = valor.NOME
                     this.nome = valor.NOME
                     this.sexo = valor.SEXO
                     this.email = valor.EMAIL
@@ -49,35 +51,6 @@ export class PerfilComponent implements OnInit {
           }
         })
       })
-    this.usuarioService.dadosAlunos()
-    .then((resultadoAluno: any) => {
-      resultadoAluno.find(valorAluno => {
-        if(valorAluno.ID == this.id){
-          this.usuarioService.dadosTurma()
-          .then((resultadoTurma: any) => {
-            resultadoTurma.find(valorTurma => {
-              if(valorTurma.ID == valorAluno.ID_TURMA){
-                this.usuarioService.dadosCurso()
-                .then((resultadoCurso: any) => {
-                  resultadoCurso.find(valorCurso => {
-                    if(valorCurso.ID == valorTurma.ID_CURSO){
-                      this.usuarioService.dadosMateria()
-                      .then((resultadoMateria: any) => {
-                        resultadoMateria.find(valorMateria => {
-                          if(valorMateria.ID_CURSO == valorCurso.ID){
-                            this.tamanho++
-                          }
-                        })
-                      })
-                    }
-                  })
-                })
-              }
-            })
-          })
-        }
-      })
-    })
 
   }
 

@@ -9,6 +9,8 @@ import CheckLoggedProfessor from '../checkLoggedProfessor.canActivate';
 import { LoginComponent } from '../login/login.component';
 import { InicioProfessorComponent } from './inicioProfessor/inicioProfessor.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -29,13 +31,13 @@ const routes: Routes = [
           { path: ':id_professor', component: TurmasComponent }
         ]
       },
-      // {
-      //   path: 'informacoes', children: [
-      //     {
-      //       path:
-      //     }
-      //   ]
-      // }
+      {
+        path: 'perfil', canActivate: [CheckLoggedProfessor], children: [
+          {
+            path: ':id_professor', component: PerfilComponent
+          }
+        ]
+      }
     ]
   }
 ]
@@ -43,7 +45,9 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
-    CommonModule
+    CommonModule,
+    BrowserModule,
+    FormsModule
   ],
   declarations: [TurmasComponent, AlunosComponent, AvaliacaoComponent, InicioProfessorComponent, PerfilComponent]
 })

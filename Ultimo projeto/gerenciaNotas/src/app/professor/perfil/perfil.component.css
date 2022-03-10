@@ -1,0 +1,195 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.first-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20vw;
+    height: 100vh;
+    box-shadow: 0 0 10px #686868;
+    background-color: white;
+}
+
+.div-professor{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+p{
+    text-align: center;
+}
+
+.second-column{
+    width: 80vw;
+    height: 100vh;
+    background-color: #e9e9e9;
+}
+
+.barra{
+    width: 100%;
+    height: 6%;
+    background-image: linear-gradient(to right,#004764, #0071A0, #00ABF0);
+}
+
+#titulo{ 
+    text-align: center;
+    padding: 10px;
+    margin-top: 30px;
+}
+
+h1 {
+    font-size: 30px;
+    background: -webkit-linear-gradient(#004764, #0071A0, #00ABF0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+#container-abas{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.aba{
+    width: 30vw;
+    height: 15vh;
+    margin-left: 20px;
+    padding: 15px;
+    color: white;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+#div-botao{
+    background-color: transparent;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.numeroTurmas{
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+    height: 50%;
+}
+
+.imagem{
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    border: 2px lightgray solid;
+    background-color: white;
+}
+
+.imagem-icone{
+    margin-left: 10px;
+}
+
+.Container-info-professor{
+    margin: 20px 0px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-professor{
+    background-color: #0071A0;
+    margin: 20px;
+    width: 60%;
+    border-radius: 10px;
+    border: 1px solid #e1f6ff;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+#info{
+    margin: 20px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: white; 
+    border-radius: 10px;
+}
+
+.foto-professor{
+    display: flex;
+    justify-content: center;
+}
+
+.informacoes{
+    background-color: #0071A0;
+    padding: 15px;
+    margin-left: 20px;
+    border-radius: 10px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.professor{
+    color: white;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+button{
+    background-color: transparent;
+    border: none;  
+    color: white;
+    font-weight: 600;
+}
+
+.botao{
+    background-color: #00ABF0;
+    margin-bottom: 10px;
+    padding: 15px 5px;
+    width: 100%;
+    text-align: center;
+    border-radius: 5px;
+  
+}
+
+input {
+    font-family: 'Courier New', Courier, monospace;
+    box-sizing: content-box;
+    padding: 5px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.linha{
+    display: flex;
+    margin-bottom: 10px;
+}
+
+#first-line{
+    display: flex; 
+    justify-content: center;
+}
+
+.outraLinha{
+   display: flex;
+   justify-content: space-evenly;
+}

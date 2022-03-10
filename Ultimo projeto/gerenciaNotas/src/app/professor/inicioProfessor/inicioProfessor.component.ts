@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class InicioProfessorComponent implements OnInit {
 
-  id 
+  id
   rg_professor = ''
   nome = ''
   sexo = ''
@@ -53,11 +53,9 @@ export class InicioProfessorComponent implements OnInit {
     this.id = url.charAt(url.length - 1)
     this.usuarioService.dadosProfessor()
       .then((result: any) => {
-        console.log("professor: ", result)
         result.find(valorProfessor => {
           if (valorProfessor.ID == this.id) {
             this.rg_professor = valorProfessor.RG_PESSOA
-            console.log(valorProfessor.RG_PESSOA)
           }
         })
       })
@@ -80,8 +78,6 @@ export class InicioProfessorComponent implements OnInit {
           }
         })
       })
-
-      console.log(this.sexo)
   }
 
   vai() {
@@ -93,7 +89,7 @@ export class InicioProfessorComponent implements OnInit {
   }
 
   vaiPerfil() {
-    this.router.navigate(['professor/informacoes', this.id])
+    this.router.navigate(['professor/perfil', this.id])
   }
 
   deslogar() {
