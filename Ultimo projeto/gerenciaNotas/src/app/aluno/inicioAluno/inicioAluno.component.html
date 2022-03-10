@@ -1,0 +1,66 @@
+<body>
+  <div class="first-column">
+    <div class="logo">
+      <img src="./assets/logo.png" style="width: 162.5px;">
+    </div>
+    <div class="div-professor">
+      <div class="foto-professor">
+        <img class="imagem"
+          [src]="sexo == 'F' ? 'https://img.icons8.com/dusk/64/000000/student-female.png' : 'https://img.icons8.com/dusk/64/000000/student-male.png' ">
+      </div>
+      <p> {{nome}}</p>
+    </div>
+  </div>
+
+  <div class="second-column">
+    <div class="barra">
+    </div>
+    <div id="titulo">
+      <h1> Inicio </h1>
+    </div>
+    <div id="container-abas">
+      <div style="background-color: #004764;" class="aba">
+        <div id="div-botao" (click)="vaiMaterias()">
+          <span>Materias</span>
+        </div>
+        <div class="numeroTurmas">
+          {{tamanho}}
+          <img class="imagem-icone" src="https://img.icons8.com/material-outlined/24/ffffff/menu--v1.png" />
+        </div>
+      </div>
+      <div style="background-color: #00ABF0;" class="aba">
+        <div id="div-botao" (click)="vaiListaProfessores()">
+          <span>Professores</span>
+        </div>
+        <div class="numeroTurmas">
+          {{tamanho}}
+          <img class="imagem-icone" src="https://img.icons8.com/ios-glyphs/30/ffffff/crowd.png" />
+        </div>
+      </div>
+    </div>
+    <div class="Container-info-professor">
+      <div class="info-professor">
+        <div id="info">
+          <div class="foto-professor">
+            <img class="imagem"
+              [src]="sexo == 'F' ? 'https://img.icons8.com/dusk/64/000000/student-female.png' : 'https://img.icons8.com/dusk/64/000000/student-male.png' ">
+          </div>
+          <div class="informacoes">
+            <div class="professor">
+              Usuário: {{nome}}
+            </div>
+            <div class="professor">
+              Email: {{email}}
+            </div>
+          </div>
+        </div>
+        <div (click)="vaiPerfil()" class="botao">
+          <button >Configurar Perfil</button>
+        </div>
+        <div (click)="deslogar()" class="botao">
+          <button >Sair</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

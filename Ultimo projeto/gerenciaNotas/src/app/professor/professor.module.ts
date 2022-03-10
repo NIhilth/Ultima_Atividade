@@ -7,14 +7,14 @@ import { AlunosComponent } from './alunos/alunos.component';
 import { AvaliacaoComponent } from './avaliacao/avaliacao.component';
 import CheckLoggedProfessor from '../checkLoggedProfessor.canActivate';
 import { LoginComponent } from '../login/login.component';
+import { InicioProfessorComponent } from './inicioProfessor/inicioProfessor.component';
 import { PerfilComponent } from './perfil/perfil.component';
-import { InfoProfessorComponent } from './info-professor/info-professor.component';
 
 const routes: Routes = [
   {
     path: 'professor', children: [
       {
-        path: ':id_professor', canActivate: [CheckLoggedProfessor], component: PerfilComponent, children: [
+        path: ':id_professor', canActivate: [CheckLoggedProfessor], component: InicioProfessorComponent, children: [
           { path: 'avaliacao', canActivate: [CheckLoggedProfessor], component: AvaliacaoComponent }
         ]
       },
@@ -45,6 +45,6 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     CommonModule
   ],
-  declarations: [TurmasComponent, AlunosComponent, AvaliacaoComponent, PerfilComponent, InfoProfessorComponent]
+  declarations: [TurmasComponent, AlunosComponent, AvaliacaoComponent, InicioProfessorComponent, PerfilComponent]
 })
 export class ProfessorModule { }

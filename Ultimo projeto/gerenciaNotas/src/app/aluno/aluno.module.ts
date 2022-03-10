@@ -2,20 +2,21 @@ import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router';
-import { MateriasComponent } from './materias/materias.component';
+import { InicioAlunoComponent } from './inicioAluno/inicioAluno.component';
 import { MateriaComponent } from './materia/materia.component';
 import CheckLoggedStudent from '../checkLoggedStudent.canActivate'
 import { LoginComponent } from '../login/login.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { DisciplinasComponent } from './disciplinas/disciplinas.component';
 
 
 const routes: Routes = [
   {
     path: 'aluno', children: [
       {
-        path: ':id_aluno', canActivate: [CheckLoggedStudent], component: MateriasComponent, children: [
+        path: ':id_aluno', canActivate: [CheckLoggedStudent], component: InicioAlunoComponent, children: [
           { path: 'materia', canActivate: [CheckLoggedStudent], component: MateriaComponent }
         ]
       },
@@ -40,6 +41,6 @@ const routes: Routes = [
     FormsModule,
     BrowserModule
   ],
-  declarations: [MateriasComponent, MateriaComponent, PerfilComponent]
+  declarations: [InicioAlunoComponent, MateriaComponent, PerfilComponent, DisciplinasComponent]
 })
 export class AlunoModule { }

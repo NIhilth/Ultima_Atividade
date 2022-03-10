@@ -81,14 +81,6 @@ export class PerfilComponent implements OnInit {
 
   }
 
-  vai() {
-    // this.router.navigate(['professor/turmas', this.id])
-  }
-
-  vaiLista() {
-    //this.router.navigate(['professor/lista', this.id])
-  }
-
   mudarPerfil() {
     this.usuarioService.mudarPessoa(this.rg, this.nome, this.email, this.usuario, this.senha, this.rg_velho)
     this.router.navigate(['aluno/', this.id])

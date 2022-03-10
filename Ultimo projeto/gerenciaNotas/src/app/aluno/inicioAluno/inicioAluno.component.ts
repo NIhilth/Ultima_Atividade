@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UsuarioService } from './../../services/usuario.service';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
-  selector: 'app-materias',
-  templateUrl: './materias.component.html',
-  styleUrls: ['./materias.component.css']
+  selector: 'app-inicioAluno',
+  templateUrl: './inicioAluno.component.html',
+  styleUrls: ['./inicioAluno.component.css']
 })
-export class MateriasComponent implements OnInit {
+export class InicioAlunoComponent implements OnInit {
 
   nome
   id
@@ -75,11 +75,11 @@ export class MateriasComponent implements OnInit {
 
   }
 
-  vai() {
+  vaiMaterias() {
     // this.router.navigate(['professor/turmas', this.id])
   }
 
-  vaiLista() {
+  vaiListaProfessores() {
     //this.router.navigate(['professor/lista', this.id])
   }
 
