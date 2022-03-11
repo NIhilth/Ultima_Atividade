@@ -8,7 +8,7 @@
         <img class="imagem"
           [src]="sexo == 'F' ? 'https://img.icons8.com/dusk/64/000000/school-director-female-skin-type-4.png' : 'https://img.icons8.com/dusk/64/000000/school-director-male-skin-type-4.png' ">
       </div>
-      <p> {{nome_velho}}</p>
+      <p> {{nome}}</p>
     </div>
   </div>
   <div class="second-column">
@@ -24,6 +24,7 @@
             <tr>
               <th>Aluno</th>
               <th>Turma</th>
+              <th>Materia</th>
               <th>Status</th>
             </tr>
             <tr *ngFor="let aluno of listaAlunos">
@@ -32,6 +33,9 @@
               </td>
               <td>
                 {{aluno.TURMA}}
+              </td>
+              <td>
+                {{aluno.MATERIA}}
               </td>
               <td>
                 Status do aluno

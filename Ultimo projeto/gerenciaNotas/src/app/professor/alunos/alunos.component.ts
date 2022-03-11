@@ -12,7 +12,6 @@ import { UsuarioService } from './../../services/usuario.service';
 export class AlunosComponent implements OnInit {
 
   nome = ''
-  nome_velho = ''
   id
   rg = ''
   rg_velho = ''
@@ -39,7 +38,6 @@ export class AlunosComponent implements OnInit {
                 resultado.find(valor => {
                   if (valor.RG == valorProfessor.RG_PESSOA) {
                     this.nome = valor.NOME
-                    this.nome_velho = valor.NOME
                     this.sexo = valor.SEXO
                     this.email = valor.EMAIL
                     this.rg = valor.RG
@@ -71,7 +69,8 @@ export class AlunosComponent implements OnInit {
                                     let aluno = {
                                       NOME: valorPessoa.NOME,
                                       TURMA: info.NOME,
-                                      ID_ALUNO: valorAluno.ID
+                                      ID_ALUNO: valorAluno.ID,
+                                      MATERIA: valor.NOME
                                       //STATUS: valorAluno.STATUS
                                     }
                                     this.listaAlunos.push(aluno)
