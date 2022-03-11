@@ -85,7 +85,7 @@ export class InicioProfessorComponent implements OnInit {
   }
 
   vaiLista() {
-    //this.router.navigate(['professor/lista', this.id])
+    this.router.navigate(['professor/alunos', this.id])
   }
 
   vaiPerfil() {

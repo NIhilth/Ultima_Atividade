@@ -11,6 +11,7 @@ import { InicioProfessorComponent } from './inicioProfessor/inicioProfessor.comp
 import { PerfilComponent } from './perfil/perfil.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { TurmaComponent } from './turma/turma.component';
 
 const routes: Routes = [
   {
@@ -22,13 +23,18 @@ const routes: Routes = [
       },
       { path: '', component: LoginComponent },
       {
-        path: 'turma', children: [
-          { path: ':id_turma', canActivate: [CheckLoggedProfessor], component: AlunosComponent }
+        path: 'alunos', children: [
+          { path: ':id_professor', canActivate: [CheckLoggedProfessor], component: AlunosComponent }
         ]
       },
       {
         path: 'turmas', canActivate: [CheckLoggedProfessor], children: [
           { path: ':id_professor', component: TurmasComponent }
+        ]
+      },
+      {
+        path: 'turma', children: [
+          { path: ':id_turma', canActivate: [CheckLoggedProfessor], component: TurmaComponent }
         ]
       },
       {
@@ -49,6 +55,6 @@ const routes: Routes = [
     BrowserModule,
     FormsModule
   ],
-  declarations: [TurmasComponent, AlunosComponent, AvaliacaoComponent, InicioProfessorComponent, PerfilComponent]
+  declarations: [TurmasComponent, AlunosComponent, AvaliacaoComponent, InicioProfessorComponent, PerfilComponent, TurmaComponent]
 })
 export class ProfessorModule { }

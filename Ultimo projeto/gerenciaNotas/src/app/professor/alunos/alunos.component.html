@@ -1,5 +1,49 @@
-<p>
-  alunos works!
-  {{id_professor}}
-  {{id_turma}}
-</p>
+<body>
+  <div class="first-column">
+    <div class="logo">
+      <img src="./assets/logo.png" style="width: 162.5px;">
+    </div>
+    <div class="div-professor">
+      <div class="foto-professor">
+        <img class="imagem"
+          [src]="sexo == 'F' ? 'https://img.icons8.com/dusk/64/000000/school-director-female-skin-type-4.png' : 'https://img.icons8.com/dusk/64/000000/school-director-male-skin-type-4.png' ">
+      </div>
+      <p> {{nome_velho}}</p>
+    </div>
+  </div>
+  <div class="second-column">
+    <div class="barra">
+    </div>
+    <div id="titulo">
+      <h1> Alunos </h1>
+    </div>
+    <div class="Container-info-professor">
+      <div class="info-professor">
+        <div id="info">
+          <table>
+            <tr>
+              <th>Aluno</th>
+              <th>Turma</th>
+              <th>Status</th>
+            </tr>
+            <tr *ngFor="let aluno of listaAlunos">
+              <td>
+                {{aluno.NOME}}
+              </td>
+              <td>
+                {{aluno.TURMA}}
+              </td>
+              <td>
+                Status do aluno
+                <!-- {{aluno.STATUS}} -->
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div (click)="voltar()" class="botao">
+          <button>Voltar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
