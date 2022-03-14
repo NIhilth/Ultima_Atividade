@@ -31,7 +31,6 @@ export class InicioAlunoComponent implements OnInit {
           if (valorAluno.ID == this.id) {
             this.usuarioService.dadosPessoa()
               .then((resultado: any) => {
-                console.log(resultado)
                 resultado.find(valor => {
                   if (valor.RG == valorAluno.RG_PESSOA) {
                     this.nome = valor.NOME

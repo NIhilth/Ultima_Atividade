@@ -93,3 +93,12 @@ inserirRota('/alterar_pessoa', function (dados, resposta){
     })
 })
 
+inserirRota('/checar_pessoa', function (dados, resposta){
+    database(`SELECT * FROM PESSOA where USUARIO = "${dados.USER}" AND SENHA = "${dados.PASSWORD}"`)
+    .then(result =>{
+        resposta(result)
+    }).catch(erro => {
+        console.log('DEU BOSTA')
+        resposta({ erro })
+    })
+})

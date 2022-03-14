@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
 
   user = ''
   password = ''
-  checou 
+  checou
 
   constructor(
     private usuarioService: UsuarioService,
@@ -22,55 +22,41 @@ export class LoginComponent implements OnInit {
   }
 
   logar() {
-    this.usuarioService.checarPessoa()
+    this.usuarioService.checarPessoa(this.user, this.password)
       .then((resultado: any) => {
-        resultado.find(valorPessoa => {
-          if (this.user === valorPessoa.usuario && this.password === valorPessoa.senha) {
-            if (valorPessoa.validacao == true) {
-              this.usuarioService.dadosProfessor()
-                .then((result: any) => {
-                  result.find(valorProfessor => {
-                    if (valorPessoa.num == valorProfessor.RG_PESSOA) {
-                      this.checou = true
-                      let id_professor = valorProfessor.ID
-                      localStorage.setItem("USER", valorPessoa.usuario)
-                      localStorage.setItem("PASSWORD", valorPessoa.senha)
-                      localStorage.setItem("PROFESSOR", valorPessoa.validacao.toString())
-                      localStorage.setItem("ID", id_professor)
-                      this.router.navigate(['professor/', id_professor])
-                      return
-                    }
-                  })
-                })
-            } else {
-              this.usuarioService.dadosAlunos()
-                .then((result: any) => {
-                  console.log(result)
-                  result.find(valorAluno => {
-                    if (valorPessoa.num == valorAluno.RG_PESSOA) {
-                      console.log(valorAluno)
-                      this.checou = true
-                      let id_aluno = valorAluno.ID
-                      localStorage.setItem("USER", valorPessoa.usuario)
-                      localStorage.setItem("PASSWORD", valorPessoa.senha)
-                      localStorage.setItem("PROFESSOR", valorPessoa.validacao.toString())
-                      localStorage.setItem("ID", id_aluno)
-                      id_aluno = '0' + id_aluno
-                      this.router.navigate(['aluno/', id_aluno])
-                      return
-                    }
-                  })
-                })
-            }
-          }
-        })
+        let result = resultado[0]
+        if (result.PROFESSOR == 1) {
+          this.usuarioService.dadosProfessor()
+            .then((resultadoProfessor: any) => {
+              resultadoProfessor.find(valorProfessor => {
+                if (result.RG == valorProfessor.RG_PESSOA) {
+                  this.checou = true
+                  let id_professor = valorProfessor.ID
+                  localStorage.setItem("USER", result.USUARIO)
+                  localStorage.setItem("PASSWORD", result.SENHA)
+                  localStorage.setItem("PROFESSOR", result.PROFESSOR.toString())
+                  this.router.navigate(['professor/', id_professor])
+                  return
+                }
+              })
+            })
+        } else {
+          this.usuarioService.dadosAlunos()
+            .then((resultadoALuno: any) => {
+              resultadoALuno.find(valorAluno => {
+                if (result.RG == valorAluno.RG_PESSOA) {
+                  this.checou = true
+                  localStorage.setItem("USER", result.USUARIO)
+                  localStorage.setItem("PASSWORD", result.SENHA)
+                  localStorage.setItem("PROFESSOR", result.PROFESSOR.toString())
+                  let id_aluno = '0' + valorAluno.ID
+                  this.router.navigate(['aluno/', id_aluno])
+                  return
+                }
+              })
+            })
+        }
       })
-      .catch(erro => {
-        console.log('deu mal', erro)
-      })
-    if (this.checou == false) {
-      alert("Senha ou Usuário inválidos")
-    } 
   }
 
 }

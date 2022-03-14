@@ -48,7 +48,7 @@ database(`CREATE TABLE IF NOT EXISTS TURMA (
 });
 
 database(`CREATE TABLE IF NOT EXISTS MATERIA (
-    CODIGO INTEGER PRIMARY KEY AUTOINCREMENT,
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
     NOME varchar(30) not null ,
     CARGA_HORARIA int not null,
     ID_PROFESSOR int not null,
@@ -63,7 +63,7 @@ database(`CREATE TABLE IF NOT EXISTS MATERIA (
 
 database(`CREATE TABLE IF NOT EXISTS ALUNO (
     ID INTEGER PRIMARY KEY AUTOINCREMENT,
-    NOTA int,
+    STATUS varchar(20) not null,
     RG_PESSOA char(7) not null UNIQUE,
     ID_TURMA int not null,
     foreign key (RG_PESSOA) references PESSOA (RG) on delete cascade on update cascade,
@@ -72,6 +72,18 @@ database(`CREATE TABLE IF NOT EXISTS ALUNO (
     console.log("TABELA ALUNO CRIADA COM SUCESSO")
 }).catch(erro => {
     console.log("TABELA ALUNO COM ERRO NA CRIAÇÃO")
+});
+
+database(`CREATE TABLE IF NOT EXISTS NOTA (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    ID_ALUNO int not null,
+    ID_MATERIA int not null,
+    foreign key (ID_ALUNO) references ALUNO (ID) on delete cascade on update cascade,
+    foreign key (ID_MATERIA) references MATERIA (ID) on delete cascade on update cascade
+    )`).then(result => {
+    console.log("TABELA NOTA CRIADA COM SUCESSO")
+}).catch(erro => {
+    console.log("TABELA NOTA COM ERRO NA CRIAÇÃO")
 });
 
 
@@ -93,13 +105,13 @@ database(`CREATE TABLE IF NOT EXISTS ALUNO (
 //         console.log("DADOS EM PROFESSOR NÃO CADASTRADOS  ")
 //     });
 
-    // database(`INSERT INTO CURSO VALUES (null,'Analista de Sistema'),(null,'Programador WEB')
-    // `)
-    // .then(result => {
-    //     console.log("DADOS EM CURSO CADASTRADOS COM SUCESSO ")
-    // }).catch(erro => {
-    //     console.log("DADOS EM CURSO NÃO CADASTRADOS ")
-    // });
+// database(`INSERT INTO CURSO VALUES (null,'Analista de Sistema'),(null,'Programador WEB')
+// `)
+// .then(result => {
+//     console.log("DADOS EM CURSO CADASTRADOS COM SUCESSO ")
+// }).catch(erro => {
+//     console.log("DADOS EM CURSO NÃO CADASTRADOS ")
+// });
 
 // database(`INSERT INTO TURMA VALUES (null,'AS01', 'Analista de Sistemas 2022.1' , 3, 1), (null, 'PROW01', 'Programador WEB 2022.1',4, 2)
 //     `)
@@ -119,11 +131,10 @@ database(`CREATE TABLE IF NOT EXISTS ALUNO (
 //     });
 
 
-// database(`INSERT INTO ALUNO VALUES (null, null, '1111111', 1), (null, null, '2222222', 1), (null, null, '4444444', 1),  (null, null, '5555555', 1),  (null, null, '1515151', 1), (null, null, '7777777', 2), (null, null, '1313131', 2), (null, null, '1414141', 2),  (null, null, '1616161', 2), (null, null, '1717171', 2)
+// database(`INSERT INTO ALUNO VALUES (null, 'Cursando', '1111111', 1), (null, 'Cursando',  '2222222', 1), (null, 'Cursando', '4444444', 1),  (null, 'Cursando', '5555555', 1),  (null, 'Cursando' , '1515151', 1 ), (null,'Cursando', '7777777', 2 ), (null,'Cursando' ,'1313131', 2), (null,'Cursando', '1414141', 2 ),  (null,'Cursando','1616161', 2 ), (null, 'Cursando', '1717171', 2), (null,'Cursando', '1818181', 1)
 // `)
 //     .then(result => {
 //         console.log("DADOS EM ALUNO CADASTRADOS COM SUCESSO ")
 //     }).catch(erro => {
 //         console.log("DADOS EM ALUNO NÃO CADASTRADOS ")
 //     });
-

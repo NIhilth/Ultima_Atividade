@@ -1,6 +1,7 @@
 import { ReturnStatement } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Console } from 'console';
 import { UsuarioService } from './../../services/usuario.service';
 
 
@@ -61,6 +62,7 @@ export class AlunosComponent implements OnInit {
                     this.usuarioService.dadosAlunos()
                       .then((resultadoALunos: any) => {
                         resultadoALunos.find(valorAluno => {
+                          console.log(valorAluno)
                           if (valorAluno.ID_TURMA == info.ID) {
                             this.usuarioService.dadosPessoa()
                               .then((resultadoPessoa: any) => {
@@ -70,8 +72,8 @@ export class AlunosComponent implements OnInit {
                                       NOME: valorPessoa.NOME,
                                       TURMA: info.NOME,
                                       ID_ALUNO: valorAluno.ID,
-                                      MATERIA: valor.NOME
-                                      //STATUS: valorAluno.STATUS
+                                      MATERIA: valor.NOME,
+                                      STATUS: valorAluno.STATUS
                                     }
                                     this.listaAlunos.push(aluno)
                                   }

@@ -6,13 +6,11 @@ import {
     RouterStateSnapshot
 } from "@angular/router";
 import { Observable } from "rxjs";
-import { UsuarioService } from "./services/usuario.service";
 
 @Injectable()
 class CheckLoggedProfessor implements CanActivate {
     constructor(
         private router: Router,
-        private usuarioService: UsuarioService
     ) { }
 
     url = this.router.url
@@ -24,55 +22,24 @@ class CheckLoggedProfessor implements CanActivate {
         state: RouterStateSnapshot,
     ): Observable<boolean> | Promise<boolean> | boolean {
 
-        // let user = localStorage.getItem("USER")
-        // let password = localStorage.getItem("PASSWORD")
-        // let verifica = localStorage.getItem("PROFESSOR")
-        // let id = Number(localStorage.getItem("ID"))
+        let user = localStorage.getItem("USER")
+        let password = localStorage.getItem("PASSWORD")
+        let verifica = localStorage.getItem("PROFESSOR")
 
-        // if (!user && !password) {
-        //     this.router.navigate([''])
-        //     return false;
-        // } else {
-        //     if (verifica != '1') {
-        //         this.router.navigate([''])
-        //         return false;
-        //     } else {
-        //         if (this.urlNumber != 0) {
-        //             if (this.urlNumber != id) {
-        //                 return false
-        //             } else {
-        //                 return true
-        //             }
-        //         } else {
-        //             this.usuarioService.dadosPessoa()
-        //                 .then((resultado: pessoa[]) => {
-        //                     this.certificar = resultado.find(valor => {
-        //                         if (valor.USUARIO === user && valor.SENHA === password) {
-        //                             return true;
-        //                         }
-        //                     })
-        //                 })
-        //         }
-        //     }
-        // }
 
-        // if (this.certificar) {
-        //     return true
-        // }
-
-        return true
+        if (!user && !password) {
+            this.router.navigate([''])
+            return false;
+        } else {
+            if (verifica != '1') {
+                this.router.navigate([''])
+                return false;
+            } else {
+                console.log("prof")
+                return true
+            }
+        }
     }
-}
-
-interface pessoa {
-    EMAIL: string
-    IDADE: number
-    NOME: string
-    PROFESSOR: boolean
-    RG: string
-    SENHA: string
-    SEXO: string
-    USUARIO: string
 }
 
 export default CheckLoggedProfessor;
