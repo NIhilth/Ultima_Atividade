@@ -1,3 +1,37 @@
-<p>
-  turma works!
-</p>
+<div id="body">
+  <div class="first-column">
+    <div class="logo">
+      <img src="./assets/logo.png" style="width: 162.5px;">
+    </div>
+    <div class="div-professor">
+      <div class="foto-professor">
+        <img class="imagem"
+          [src]="sexo == 'F' ? 'https://img.icons8.com/dusk/64/000000/school-director-female-skin-type-4.png' : 'https://img.icons8.com/dusk/64/000000/school-director-male-skin-type-4.png' ">
+      </div>
+      <p> {{nome}}</p>
+    </div>
+  </div>
+  <div >
+    <div class="barra">
+    </div>
+    <div class="container-turmas">
+      <div id="turmas">
+        <div class="turma" *ngFor="let aluno of listaAlunos">
+          <div>
+            Aluno: {{aluno.nome}}
+          </div>
+          <div>
+            Idade:{{aluno.idade}}
+          </div>
+          <div>
+            Email: {{aluno.email}}
+           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noCourses>
+  <div style="display: none;"></div>
+</ng-template>

@@ -21,6 +21,7 @@ export class AlunosComponent implements OnInit {
   usuario = ''
   senha = ''
   listaAlunos = []
+  user = ''
 
   constructor(
     private router: Router,
@@ -40,11 +41,10 @@ export class AlunosComponent implements OnInit {
                   if (valor.RG == valorProfessor.RG_PESSOA) {
                     this.nome = valor.NOME
                     this.sexo = valor.SEXO
-                    this.email = valor.EMAIL
-                    this.rg = valor.RG
-                    this.rg_velho = valor.RG
-                    this.usuario = valor.USUARIO
-                    this.senha = valor.SENHA
+                    this.user = valor.USUARIO
+                    if (this.user != localStorage.getItem('USER')) {
+                      this.router.navigate([''])
+                    }
                   }
                 })
               })

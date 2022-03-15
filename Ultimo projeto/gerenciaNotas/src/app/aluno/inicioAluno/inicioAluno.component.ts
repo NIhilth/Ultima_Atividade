@@ -14,6 +14,7 @@ export class InicioAlunoComponent implements OnInit {
   sexo
   email
   tamanho = 0
+  user 
 
   constructor(
     private router: Router,
@@ -36,6 +37,10 @@ export class InicioAlunoComponent implements OnInit {
                     this.nome = valor.NOME
                     this.sexo = valor.SEXO
                     this.email = valor.EMAIL
+                    this.user = valor.USUARIO
+                    if (this.user != localStorage.getItem('USER')) {
+                      this.router.navigate([''])
+                    }
                   }
                 })
               })
@@ -43,34 +48,34 @@ export class InicioAlunoComponent implements OnInit {
         })
       })
     this.usuarioService.dadosAlunos()
-    .then((resultadoAluno: any) => {
-      resultadoAluno.find(valorAluno => {
-        if(valorAluno.ID == this.id){
-          this.usuarioService.dadosTurma()
-          .then((resultadoTurma: any) => {
-            resultadoTurma.find(valorTurma => {
-              if(valorTurma.ID == valorAluno.ID_TURMA){
-                this.usuarioService.dadosCurso()
-                .then((resultadoCurso: any) => {
-                  resultadoCurso.find(valorCurso => {
-                    if(valorCurso.ID == valorTurma.ID_CURSO){
-                      this.usuarioService.dadosMateria()
-                      .then((resultadoMateria: any) => {
-                        resultadoMateria.find(valorMateria => {
-                          if(valorMateria.ID_CURSO == valorCurso.ID){
-                            this.tamanho++
+      .then((resultadoAluno: any) => {
+        resultadoAluno.find(valorAluno => {
+          if (valorAluno.ID == this.id) {
+            this.usuarioService.dadosTurma()
+              .then((resultadoTurma: any) => {
+                resultadoTurma.find(valorTurma => {
+                  if (valorTurma.ID == valorAluno.ID_TURMA) {
+                    this.usuarioService.dadosCurso()
+                      .then((resultadoCurso: any) => {
+                        resultadoCurso.find(valorCurso => {
+                          if (valorCurso.ID == valorTurma.ID_CURSO) {
+                            this.usuarioService.dadosMateria()
+                              .then((resultadoMateria: any) => {
+                                resultadoMateria.find(valorMateria => {
+                                  if (valorMateria.ID_CURSO == valorCurso.ID) {
+                                    this.tamanho++
+                                  }
+                                })
+                              })
                           }
                         })
                       })
-                    }
-                  })
+                  }
                 })
-              }
-            })
-          })
-        }
+              })
+          }
+        })
       })
-    })
 
   }
 
@@ -83,7 +88,7 @@ export class InicioAlunoComponent implements OnInit {
   }
 
   vaiPerfil() {
-      this.router.navigate(['aluno/perfil', this.id])
+    this.router.navigate(['aluno/perfil', this.id])
   }
 
   deslogar() {

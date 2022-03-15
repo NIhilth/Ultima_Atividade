@@ -86,6 +86,12 @@ database(`CREATE TABLE IF NOT EXISTS NOTA (
     console.log("TABELA NOTA COM ERRO NA CRIAÇÃO")
 });
 
+// database(`INSERT INTO TESTE  VALUES (null, 'jobelwilson', 37)`).then(result => {
+//     console.log("TABELA TESTE INISIRDA COM SUCESSO")
+// }).catch(erro => {
+//     console.log("TABELA TESTE COINISIRDANA CRIAÇÃO")
+// });
+
 
 // database(`INSERT INTO PESSOA VALUES ('1111111', 'JOÃO HENRIQUE MEIRELES DA SILVA', 17, 'M', 'jaozinuauau@gmail.com', 'Joao_hm_Silva', 'jhms123456', false), ('2222222',  'DIEGO PLANINSCHECK', 16, 'M', 'dieguinDo846ULH0@gmail.com.br', 'Diego_Planin', 'diegaoMeuBom', false), ('3333333', 'BRUNO VERBINNEN', 23, 'M', 'brunohvc@gmail.com', 'bruno_hvc', 'bruninho', true), ('4444444', 'CAMILLY DE SOUZA PESSOTTI', 16, 'F', 'camillinhaDoBaile@gmail.com', 'camilly_pesso', 'kamikazeyey', false), ('5555555', 'BRUNA ALVES MAFRA', 17, 'F', 'bruninhaDoBaile@gmail.com', 'Bruna_Mafra', 'brujayuhu', false), ('6666666', 'LEANDRO JOSÉ SEBOLD DOS SANTOS', 20, 'M', 'leandrinhoDoCorre@gmail.com', 'Leandro_Santos', 'L30Z1K4KK', true), ('7777777',  'HENRIQUE COLE', 16, 'M', 'henriqueDoBalacobaco@gmail.com.br', 'Henrique_Cole', 'henri123456', false), ('8888888',  'ROMÁRIO HORNBURG', 27, 'M', 'romariao@gmail.com.br', 'Romario_burg', 'r0m4r10L0K0', true), ('9999999',  'JOHNATAN LUIZ OSTERLOH', 34, 'M', 'osterlohZJonny@gmail.com', 'Johnatan_Osterloh', 'jo4@ni*89t06', true), ('1212121',  'TATHIANA DUARTE DO AMARANTE', 32, 'F', 'tatyAmar@gmail.com', 'Tathiana_Duarte', 'tatyZ4k1040', true),
 // ('1313131',  'VINÍCIUS  BONATTI BENNER', 16, 'M', 'TheBonatti.vini@gmail.com', 'Vinicius_Bonatti', 'v89i05n#$i', false), ('1414141',  'OTÁVIO AUGUSTO DOS SANTOS', 16, 'M', 'otaviu.Santos@gmail.com', 'Otavio_Augusto', 'o6%4ta0po', false), ('1515151', 'VYTOR AUGUSTO ROSA', 17, 'M', 'vitinhoGameplay@gmail.com.br', 'Vytor_Augusto', 'vitoror0', false), ('1616161', 'ESTER GIRELLI', 18, 'F', 'ester.Girelli@gmail.com', 'Ester_Girelli', 'esterzina', false),

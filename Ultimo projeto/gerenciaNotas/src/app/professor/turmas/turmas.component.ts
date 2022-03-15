@@ -17,6 +17,7 @@ export class TurmasComponent implements OnInit {
   listaTurma = []
   listaAlunos = []
   listaRegentes = []
+  user = ''
 
   constructor(
     private usuarioService: UsuarioService,
@@ -40,6 +41,10 @@ export class TurmasComponent implements OnInit {
           if (resultado[i].RG == this.rg_professor) {
             this.nome = resultado[i].NOME
             this.sexo = resultado[i].SEXO
+            this.user = resultado[i].USUARIO
+            if(this.user != localStorage.getItem('USER')){
+              this.router.navigate([''])
+            }
           }
         }
       })
@@ -93,7 +98,11 @@ export class TurmasComponent implements OnInit {
                   .then((resultadoPessoa: any) => {
                     resultadoPessoa.find(valorPessoa => {
                       if (valorPessoa.RG == valorProfessor.RG_PESSOA) {
-                        this.listaRegentes.push(valorPessoa.NOME)
+                        let info ={
+                          nome:valorPessoa.NOME,
+                          id_turma: valor.ID
+                        }
+                        this.listaRegentes.push(info)
                       }
                     })
                   })

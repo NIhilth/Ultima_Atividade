@@ -18,6 +18,7 @@ export class PerfilComponent implements OnInit {
   email = ''
   usuario = ''
   senha = ''
+  user = ''
 
   constructor(
     private router: Router,
@@ -43,6 +44,10 @@ export class PerfilComponent implements OnInit {
                     this.rg_velho = valor.RG
                     this.usuario = valor.USUARIO
                     this.senha = valor.SENHA
+                    this.user = valor.USUARIO
+                    if (this.user != localStorage.getItem('USER')) {
+                      this.router.navigate([''])
+                    }
                   }
                 })
               })

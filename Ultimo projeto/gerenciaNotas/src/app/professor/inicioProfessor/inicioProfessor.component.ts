@@ -18,6 +18,7 @@ export class InicioProfessorComponent implements OnInit {
   listaTurma = []
   tamanho
   alunos = 0
+  user = ''
 
   constructor(
     private router: Router,
@@ -66,6 +67,10 @@ export class InicioProfessorComponent implements OnInit {
             this.nome = valorPessoa.NOME
             this.sexo = valorPessoa.SEXO
             this.email = valorPessoa.EMAIL
+            this.user = valorPessoa.USUARIO
+            if(this.user != localStorage.getItem('USER')){
+              this.router.navigate([''])
+            }
           }
         })
       })

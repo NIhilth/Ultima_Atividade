@@ -35,7 +35,6 @@ class CheckLoggedProfessor implements CanActivate {
                 this.router.navigate([''])
                 return false;
             } else {
-                console.log("prof")
                 return true
             }
         }
