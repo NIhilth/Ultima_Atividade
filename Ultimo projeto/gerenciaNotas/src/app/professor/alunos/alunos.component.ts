@@ -89,7 +89,6 @@ export class AlunosComponent implements OnInit {
           }
         })
       })
-    console.log(this.listaAlunos)
   }
   voltar() {
     this.router.navigate(['professor/', this.id])
