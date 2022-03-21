@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { L } from '@angular/core/src/render3';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 
@@ -113,13 +114,16 @@ export class TurmasComponent implements OnInit {
       })
   }
 
-
+  voltar() {
+    this.router.navigate(['professor/', this.id])
+  }
 
   verPerfil() {
     this.router.navigate(['professor/perfil', this.id])
   }
 
   verTurma(numero) {
+    console.log(numero)
     this.router.navigate(['professor/turma', numero], { queryParams: { id: this.id } })
   }
 

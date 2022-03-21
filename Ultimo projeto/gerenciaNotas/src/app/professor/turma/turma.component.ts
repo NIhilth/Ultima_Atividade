@@ -21,6 +21,7 @@ export class TurmaComponent implements OnInit {
   sexo = ''
   user = ''
   listaAlunos = []
+  nomeTurma = ''
 
   ngOnInit() {
     this.id_turma = this.router.url.charAt(this.router.url.length - 6)
@@ -68,8 +69,30 @@ export class TurmaComponent implements OnInit {
           })
         }
       })
-      console.log(this.listaAlunos)
     })
+    this.usuarioService.dadosMateria()
+    .then((result: any) => {
+      result.find(valor => {
+        if (valor.ID_PROFESSOR == this.id_professor) {
+          this.usuarioService.dadosTurma()
+            .then((resultado: any) => {
+              resultado.find(info => {
+                if (info.ID_CURSO == valor.ID_CURSO) {
+                  this.nomeTurma = valor.NOME
+                }
+              })
+            })
+        }
+      })
+    })
+  }
+
+  voltar() {
+    this.router.navigate(['professor/turmas', this.id_professor])
+  }
+
+  vaiCadastrarNota(){
+    this.router.navigate(['professor/cadastrar_nota', this.id_turma], { queryParams: { id: this.id_professor } })
   }
 
 }

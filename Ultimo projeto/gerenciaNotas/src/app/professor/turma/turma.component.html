@@ -13,6 +13,9 @@
   </div>
   <div >
     <div class="barra">
+    </div>  
+    <div id="containerTitulo">
+      <h1>{{nomeTurma}}</h1>
     </div>
     <div class="container-turmas">
       <div id="turmas">
@@ -27,11 +30,15 @@
             Email: {{aluno.email}}
            </div>
         </div>
+        <div (click)="vaiCadastrarNota()" id="botoes">
+          <div class="botao">
+            Cadastrar nota
+          </div>
+          <div (click) ="voltar()" class="botao">
+            Voltar
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-<ng-template #noCourses>
-  <div style="display: none;"></div>
-</ng-template>

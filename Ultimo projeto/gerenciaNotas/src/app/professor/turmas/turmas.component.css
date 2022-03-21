@@ -162,3 +162,17 @@ p{
     font-size: 10px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+
+#botoes{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+}
+
+.botao{
+    background-color: #004764;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #ffffff;
+}

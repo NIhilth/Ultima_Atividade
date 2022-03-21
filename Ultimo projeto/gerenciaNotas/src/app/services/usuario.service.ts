@@ -105,4 +105,18 @@ export class UsuarioService {
         .catch(reject)
     })
   }
+
+  cadastrarNota(ID_ALUNO, ID_TURMA, NOTA){
+    return new Promise((resolve, reject) => {
+      fetch('/api/cadastrar_nota',
+        {
+          method: 'POST',
+          body: JSON.stringify({ID_ALUNO, ID_TURMA, NOTA}),
+          headers: { 'Content-Type': 'application/json' }
+        }
+      ).then(result => result.json())
+        .then(resolvido => resolve(resolvido))
+        .catch(reject)
+    })
+  }
 }

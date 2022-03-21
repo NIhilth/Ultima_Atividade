@@ -17,9 +17,7 @@ const routes: Routes = [
   {
     path: 'professor', children: [
       {
-        path: ':id_professor', canActivate: [CheckLoggedProfessor], component: InicioProfessorComponent, children: [
-          { path: 'avaliacao', canActivate: [CheckLoggedProfessor], component: AvaliacaoComponent }
-        ]
+        path: ':id_professor', canActivate: [CheckLoggedProfessor], component: InicioProfessorComponent
       },
       { path: '', component: LoginComponent },
       {
@@ -41,6 +39,13 @@ const routes: Routes = [
         path: 'perfil', canActivate: [CheckLoggedProfessor], children: [
           {
             path: ':id_professor', component: PerfilComponent
+          }
+        ]
+      },
+      {
+        path: 'cadastrar_nota', canActivate: [CheckLoggedProfessor], children: [
+          {
+            path: ':id_turma', canActivate: [CheckLoggedProfessor], component: AvaliacaoComponent
           }
         ]
       }

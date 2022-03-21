@@ -102,3 +102,13 @@ inserirRota('/checar_pessoa', function (dados, resposta){
         resposta({ erro })
     })
 })
+
+inserirRota('/cadastrar_nota', function (dados, resposta){
+    database(`INSERT INTO NOTA VALUES (null, "${dados.NOTA}", "${dados.ID_ALUNO}", "${dados.ID_TURMA}")`)
+    .then(result =>{
+        resposta(result)
+    }).catch(erro => {
+        console.log('DEU BOSTA')
+        resposta({ erro })
+    })
+})

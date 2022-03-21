@@ -1,7 +1,5 @@
-import { ReturnStatement } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Console } from 'console';
+import { Router} from '@angular/router';
 import { UsuarioService } from './../../services/usuario.service';
 
 
@@ -62,7 +60,6 @@ export class AlunosComponent implements OnInit {
                     this.usuarioService.dadosAlunos()
                       .then((resultadoALunos: any) => {
                         resultadoALunos.find(valorAluno => {
-                          console.log(valorAluno)
                           if (valorAluno.ID_TURMA == info.ID) {
                             this.usuarioService.dadosPessoa()
                               .then((resultadoPessoa: any) => {
