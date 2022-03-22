@@ -24,6 +24,7 @@ export class AvaliacaoComponent implements OnInit {
   listaNotas = []
   nomeTurma = ''
   id_Materia
+  numeroProva
 
   ngOnInit() {
     this.id_turma = this.router.url.charAt(this.router.url.length - 6)
@@ -90,25 +91,56 @@ export class AvaliacaoComponent implements OnInit {
       })
   }
 
+  voltar() {
+    this.router.navigate(['professor/turma', this.id_turma], { queryParams: { id: this.id_professor } })
+  }
+
   cadastrarNota() {
-    this.usuarioService.dadosPessoa()
-      .then((resultadoPessoa: any) => {
-        resultadoPessoa.find(valorPessoa => {
-          for (let i = 0; i < this.listaAlunos.length; i++) {
-            if (valorPessoa.NOME == this.listaAlunos[i].nome) {
-              this.usuarioService.dadosAlunos()
-                .then((resultadoAluno: any) => {
-                  resultadoAluno.find(valorAluno => {
-                    if (valorPessoa.RG == valorAluno.RG_PESSOA) {
-                      this.usuarioService.cadastrarNota(valorAluno.ID, this.id_Materia,this.listaNotas[i] )
-                    }
-                  })
-                })
-            }
+
+    let checar = false
+
+    for (let i = 0; i < this.listaNotas.length; i++) {
+      if (this.listaNotas[i] != "") {
+        checar = true
+      } else {
+        checar = false
+
+
+      }
+    }
+
+    if (!checar) {
+      alert("Algum espaço não está preenchido")
+    } else {
+      this.usuarioService.dadosNota()
+        .then((resultado: any) => {
+          if (resultado == '') {
+            this.numeroProva = 1
+            console.log("EWCDP,HLG")
+          } else {
+            this.numeroProva = resultado[resultado.length - 1].NUMERO_PROVA + 1
           }
         })
-      })
+      this.usuarioService.dadosPessoa()
+        .then((resultadoPessoa: any) => {
+          resultadoPessoa.find(valorPessoa => {
+            for (let i = 0; i < this.listaAlunos.length; i++) {
+              if (valorPessoa.NOME == this.listaAlunos[i].nome) {
+                this.usuarioService.dadosAlunos()
+                  .then((resultadoAluno: any) => {
+                    resultadoAluno.find(valorAluno => {
+                      if (valorPessoa.RG == valorAluno.RG_PESSOA) {
+                        this.usuarioService.cadastrarNota(this.numeroProva, valorAluno.ID, this.id_Materia, this.listaNotas[i])
+                        this.router.navigate(['professor/turma', this.id_turma], { queryParams: { id: this.id_professor } })
+                      }
+                    })
+                  })
+              }
+            }
+          })
+        })
 
+    }
   }
 
 }

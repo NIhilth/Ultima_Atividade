@@ -83,6 +83,16 @@ inserirRota('/ver_curso', function (dados, resposta){
     })
 })
 
+inserirRota('/ver_nota', function (dados, resposta){
+    database('SELECT * FROM NOTA')
+    .then(result =>{
+        resposta(result)
+    }).catch(erro => {
+        console.log('DEU BOSTA')
+        resposta({ erro })
+    })
+})
+
 inserirRota('/alterar_pessoa', function (dados, resposta){
     database(`UPDATE PESSOA SET RG = "${dados.RG}", NOME = "${dados.NOME}", EMAIL = "${dados.EMAIL}", SENHA = "${dados.SENHA}", USUARIO = "${dados.USER}" where RG = "${dados.RG_ANTIGO}"`)
     .then(result =>{
@@ -104,7 +114,7 @@ inserirRota('/checar_pessoa', function (dados, resposta){
 })
 
 inserirRota('/cadastrar_nota', function (dados, resposta){
-    database(`INSERT INTO NOTA VALUES (null, "${dados.NOTA}", "${dados.ID_ALUNO}", "${dados.ID_TURMA}")`)
+    database(`INSERT INTO NOTA VALUES (null, "${dados.NUMERO_PROVA}", "${dados.NOTA}", "${dados.ID_ALUNO}", "${dados.ID_TURMA}")`)
     .then(result =>{
         resposta(result)
     }).catch(erro => {
