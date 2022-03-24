@@ -99,68 +99,66 @@ export class AvaliacaoComponent implements OnInit {
 
   cadastrarNota() {
     let checar = false
-    let numero = false
+    let notasPostas = 0
+    let preenchido = false
+    let numero = 0
 
     for (let i = 0; i < this.listaNotas.length; i++) {
       if (this.listaNotas[i] != "") {
-        checar = true
-      } else {
-        checar = false
+        notasPostas++
       }
 
-      if (!+this.listaNotas[i]) {
-        checar = false
-        numero = false
-      } else {
-        checar = true
-        numero = false
+      if (!!+this.listaNotas[i]) {
+        numero++
       }
     }
-
-    console.log(checar)
 
     if (this.conteudo != "" && this.descricao != "" && this.peso != undefined) {
-      checar = true
-    } else {
-      checar = false
+      preenchido = true
     }
 
-    if (!checar) {
-      if (numero) {
-        alert("Algum espaço não está preenchido")
+    if(notasPostas == this.listaNotas.length){
+      if(numero == this.listaNotas.length){
+        if(preenchido){
+          checar = true
+        } else {
+          alert("Algum campo nas especificações está em branco!")
+        }
       } else {
-        alert("Nota informada não é um número")
+        alert("Alguma nota não é um número!")
       }
+    } else {
+      alert("Algum campo está em branco!")
     }
 
-    //arrumar a cehcagem de checar os inputs
+    console.log(notasPostas, " " , numero, " " , preenchido)
 
-    // else {
-    //   this.usuarioService.cadastrarAvaliacao(this.conteudo, this.descricao, this.peso)
-    //   this.usuarioService.cadastrarNota
-    //   this.usuarioService.dadosPessoa()
-    //     .then((resultadoPessoa: any) => {
-    //       resultadoPessoa.find(valorPessoa => {
-    //         for (let i = 0; i < this.listaAlunos.length; i++) {
-    //           if (valorPessoa.NOME == this.listaAlunos[i].nome) {
-    //             this.usuarioService.dadosAlunos()
-    //               .then((resultadoAluno: any) => {
-    //                 resultadoAluno.find(valorAluno => {
-    //                   if (valorPessoa.RG == valorAluno.RG_PESSOA) {
-    //                     this.usuarioService.dadosAvaliacao()
-    //                     .then((resultadoAvaliacao: any) => {
-    //                     this.usuarioService.cadastrarNota( resultadoAvaliacao.length, valorAluno.ID, this.id_Materia, this.listaNotas[i])
-    //                     this.router.navigate(['professor/turma', this.id_turma], { queryParams: { id: this.id_professor } })
-    //                   })
-    //                     }
-    //                 })
-    //               })
-    //           }
-    //         }
-    //       })
-    //     })
+    if(checar) {
+      this.usuarioService.cadastrarAvaliacao(this.conteudo, this.descricao, this.peso)
+      this.usuarioService.cadastrarNota
+      this.usuarioService.dadosPessoa()
+        .then((resultadoPessoa: any) => {
+          resultadoPessoa.find(valorPessoa => {
+            for (let i = 0; i < this.listaAlunos.length; i++) {
+              if (valorPessoa.NOME == this.listaAlunos[i].nome) {
+                this.usuarioService.dadosAlunos()
+                  .then((resultadoAluno: any) => {
+                    resultadoAluno.find(valorAluno => {
+                      if (valorPessoa.RG == valorAluno.RG_PESSOA) {
+                        this.usuarioService.dadosAvaliacao()
+                        .then((resultadoAvaliacao: any) => {
+                        this.usuarioService.cadastrarNota( resultadoAvaliacao.length, valorAluno.ID, this.id_Materia, this.listaNotas[i])
+                        this.router.navigate(['professor/turma', this.id_turma], { queryParams: { id: this.id_professor } })
+                      })
+                        }
+                    })
+                  })
+              }
+            }
+          })
+        })
 
-    // }
+    }
   }
 
 }
