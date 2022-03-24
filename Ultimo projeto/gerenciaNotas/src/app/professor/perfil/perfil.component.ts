@@ -12,7 +12,6 @@ export class PerfilComponent implements OnInit {
   nome = ''
   nome_velho = ''
   id
-  rg = ''
   rg_velho = ''
   sexo = ''
   email = ''
@@ -40,7 +39,6 @@ export class PerfilComponent implements OnInit {
                     this.nome_velho = valor.NOME
                     this.sexo = valor.SEXO
                     this.email = valor.EMAIL
-                    this.rg = valor.RG
                     this.rg_velho = valor.RG
                     this.usuario = valor.USUARIO
                     this.senha = valor.SENHA
@@ -58,7 +56,7 @@ export class PerfilComponent implements OnInit {
   }
 
   mudarPerfil() {
-    this.usuarioService.mudarPessoa(this.rg, this.nome, this.email, this.usuario, this.senha, this.rg_velho)
+    this.usuarioService.mudarPessoa( this.nome, this.email, this.usuario, this.senha, this.rg_velho)
     this.router.navigate(['professor/', this.id])
   }
 

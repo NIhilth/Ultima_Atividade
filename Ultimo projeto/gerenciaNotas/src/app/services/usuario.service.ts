@@ -98,12 +98,12 @@ export class UsuarioService {
     })
   }
 
-  mudarPessoa(RG, NOME, EMAIL, USER, SENHA, RG_ANTIGO) {
+  mudarPessoa( NOME, EMAIL, USER, SENHA, RG_ANTIGO) {
     return new Promise((resolve, reject) => {
       fetch('/api/alterar_pessoa',
         {
           method: 'POST',
-          body: JSON.stringify({ RG, NOME, EMAIL, USER, SENHA, RG_ANTIGO }),
+          body: JSON.stringify({NOME, EMAIL, USER, SENHA, RG_ANTIGO }),
           headers: { 'Content-Type': 'application/json' }
         }
       ).then(result => result.json())
