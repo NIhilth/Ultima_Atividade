@@ -74,14 +74,26 @@ database(`CREATE TABLE IF NOT EXISTS ALUNO (
     console.log("TABELA ALUNO COM ERRO NA CRIAÇÃO")
 });
 
+database(`CREATE TABLE IF NOT EXISTS AVALIACAO (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    CONTEUDO varchar(30) not null,
+    DESCRICAO varchar(280) not null,
+    PESO int not null
+    )`).then(result => {
+    console.log("TABELA AVALIACAO CRIADA COM SUCESSO")
+}).catch(erro => {
+    console.log("TABELA AVALIACAO COM ERRO NA CRIAÇÃO")
+});
+
 database(`CREATE TABLE IF NOT EXISTS NOTA (
     ID INTEGER PRIMARY KEY AUTOINCREMENT,
-    NUMERO_PROVA int not null,
     NOTA int not null,
     ID_ALUNO int not null,
     ID_MATERIA int not null,
+    ID_AVALIACAO int not null,
     foreign key (ID_ALUNO) references ALUNO (ID) on delete cascade on update cascade,
-    foreign key (ID_MATERIA) references MATERIA (ID) on delete cascade on update cascade
+    foreign key (ID_MATERIA) references MATERIA (ID) on delete cascade on update cascade,
+    foreign key (ID_AVALIACAO) references AVALIACAO (ID) on delete cascade on update cascade
     )`).then(result => {
     console.log("TABELA NOTA CRIADA COM SUCESSO")
 }).catch(erro => {

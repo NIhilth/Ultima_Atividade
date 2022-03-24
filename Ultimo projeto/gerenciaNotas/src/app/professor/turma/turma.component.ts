@@ -21,7 +21,7 @@ export class TurmaComponent implements OnInit {
   sexo = ''
   user = ''
   listaAlunos = []
-  nomeTurma = ''
+  nomeMateria = ''
 
   ngOnInit() {
     this.id_turma = this.router.url.charAt(this.router.url.length - 6)
@@ -78,7 +78,7 @@ export class TurmaComponent implements OnInit {
             .then((resultado: any) => {
               resultado.find(info => {
                 if (info.ID_CURSO == valor.ID_CURSO) {
-                  this.nomeTurma = valor.NOME
+                  this.nomeMateria = valor.NOME
                 }
               })
             })

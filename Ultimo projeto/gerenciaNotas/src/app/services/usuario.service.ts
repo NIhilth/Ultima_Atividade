@@ -88,6 +88,16 @@ export class UsuarioService {
     })
   }
 
+  dadosAvaliacao(){
+    return new Promise((resolve, reject) => {
+      fetch('/api/ver_prova',
+        { method: 'POST', headers: { 'Content-Type': 'application/json' } }
+      ).then(result => result.json())
+        .then(resolvido => resolve(resolvido))
+        .catch(reject)
+    })
+  }
+
   mudarPessoa(RG, NOME, EMAIL, USER, SENHA, RG_ANTIGO) {
     return new Promise((resolve, reject) => {
       fetch('/api/alterar_pessoa',
@@ -116,12 +126,26 @@ export class UsuarioService {
     })
   }
 
-  cadastrarNota(NUMERO_PROVA,ID_ALUNO, ID_TURMA, NOTA){
+  cadastrarNota(ID_AVALIACAO,ID_ALUNO, ID_TURMA, NOTA){
     return new Promise((resolve, reject) => {
       fetch('/api/cadastrar_nota',
         {
           method: 'POST',
-          body: JSON.stringify({NUMERO_PROVA, ID_ALUNO, ID_TURMA, NOTA}),
+          body: JSON.stringify({ID_AVALIACAO, ID_ALUNO, ID_TURMA, NOTA}),
+          headers: { 'Content-Type': 'application/json' }
+        }
+      ).then(result => result.json())
+        .then(resolvido => resolve(resolvido))
+        .catch(reject)
+    })
+  }
+
+  cadastrarAvaliacao(CONTEUDO, DESCRICAO, PESO){
+    return new Promise((resolve, reject) => {
+      fetch('/api/cadastrar_prova',
+        {
+          method: 'POST',
+          body: JSON.stringify({CONTEUDO, DESCRICAO, PESO}),
           headers: { 'Content-Type': 'application/json' }
         }
       ).then(result => result.json())

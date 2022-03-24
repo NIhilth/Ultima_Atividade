@@ -17,6 +17,24 @@
     <div id="containerTitulo">
       <h1>{{nomeTurma}}</h1>
     </div>
+    <div class="container_Informacoes">
+      <div class="informacoes_prova">
+        <div id="linha">
+          <div class="cadastro">
+            <span>Conteúdo:</span>
+            <input [(ngModel)]="conteudo" class="input_cadastro" type="text">
+          </div>
+          <div class="cadastro">
+            <span>Peso:</span>
+            <input [(ngModel)]="peso" class="input_cadastro" type="text">
+          </div>
+        </div>
+        <div class="cadastro" id="cadastro2">
+          <span style="margin-left: 10px;">Descrição:</span>
+            <textarea [(ngModel)]="descricao" name="Descrição" id="descricao" cols="30" rows="10"></textarea>
+        </div>
+      </div>
+    </div>
     <div class="container-turmas">
       <div id="turmas">
         <div class="turma" *ngFor="let aluno of listaAlunos;let i = index">
@@ -25,7 +43,7 @@
               Aluno: {{aluno.nome}}
             </div>
             <div>
-              Idade:{{aluno.idade}}
+              Idade:{{aluno.idade}}s
             </div>
             <div>
               Email: {{aluno.email}}
@@ -33,7 +51,8 @@
           </div>
           <div>
             <div>
-              <input [(ngModel)]="listaNotas[i]" type="text">
+              <span style="margin-right: 10px;">Nota: </span>
+              <input class="input-nota" [(ngModel)]="listaNotas[i]" type="text">
             </div>
           </div>
         </div>

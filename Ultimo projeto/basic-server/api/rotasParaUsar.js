@@ -93,6 +93,16 @@ inserirRota('/ver_nota', function (dados, resposta){
     })
 })
 
+inserirRota('/ver_prova', function (dados, resposta){
+    database('SELECT * FROM AVALIACAO')
+    .then(result =>{
+        resposta(result)
+    }).catch(erro => {
+        console.log('DEU BOSTA')
+        resposta({ erro })
+    })
+})
+
 inserirRota('/alterar_pessoa', function (dados, resposta){
     database(`UPDATE PESSOA SET RG = "${dados.RG}", NOME = "${dados.NOME}", EMAIL = "${dados.EMAIL}", SENHA = "${dados.SENHA}", USUARIO = "${dados.USER}" where RG = "${dados.RG_ANTIGO}"`)
     .then(result =>{
@@ -114,7 +124,17 @@ inserirRota('/checar_pessoa', function (dados, resposta){
 })
 
 inserirRota('/cadastrar_nota', function (dados, resposta){
-    database(`INSERT INTO NOTA VALUES (null, "${dados.NUMERO_PROVA}", "${dados.NOTA}", "${dados.ID_ALUNO}", "${dados.ID_TURMA}")`)
+    database(`INSERT INTO NOTA VALUES (null, "${dados.NOTA}", "${dados.ID_ALUNO}", "${dados.ID_TURMA}", "${dados.ID_AVALIACAO}")`)
+    .then(result =>{
+        resposta(result)
+    }).catch(erro => {
+        console.log('DEU BOSTA')
+        resposta({ erro })
+    })
+})
+
+inserirRota('/cadastrar_PROVA', function (dados, resposta){
+    database(`INSERT INTO AVALIACAO VALUES (null, "${dados.CONTEUDO}", "${dados.DESCRICAO}", "${dados.PESO}")`)
     .then(result =>{
         resposta(result)
     }).catch(erro => {
