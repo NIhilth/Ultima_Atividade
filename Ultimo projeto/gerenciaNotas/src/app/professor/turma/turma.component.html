@@ -11,9 +11,9 @@
       <p> {{nome}}</p>
     </div>
   </div>
-  <div >
+  <div>
     <div class="barra">
-    </div>  
+    </div>
     <div id="containerTitulo">
       <h1>{{nomeMateria}}</h1>
     </div>
@@ -21,20 +21,28 @@
       <div id="turmas">
         <div class="turma" *ngFor="let aluno of listaAlunos">
           <div>
-            Aluno: {{aluno.nome}}
+            <div>
+              Aluno: {{aluno.nome}}
+            </div>
+            <div>
+              Idade:{{aluno.idade}}
+            </div>
+            <div>
+              Email: {{aluno.email}}
+            </div>
           </div>
-          <div>
-            Idade:{{aluno.idade}}
+          <div class="notas">
+            <div class="container-nota" *ngFor="let prova of listaProvas; let i = index">
+              <span>Prova {{i+1}}: </span>
+              <span class="notaNumero">{{prova[i]}}</span>
+            </div>
           </div>
-          <div>
-            Email: {{aluno.email}}
-           </div>
         </div>
-        <div (click)="vaiCadastrarNota()" id="botoes">
-          <div class="botao">
+        <div id="botoes">
+          <div (click)="vaiCadastrarNota()" class="botao">
             Cadastrar nota
           </div>
-          <div (click) ="voltar()" class="botao">
+          <div (click)="voltar()" class="botao">
             Voltar
           </div>
         </div>

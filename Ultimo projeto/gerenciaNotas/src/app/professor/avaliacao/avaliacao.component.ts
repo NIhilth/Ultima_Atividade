@@ -134,7 +134,7 @@ export class AvaliacaoComponent implements OnInit {
     console.log(notasPostas, " " , numero, " " , preenchido)
 
     if(checar) {
-      this.usuarioService.cadastrarAvaliacao(this.conteudo, this.descricao, this.peso)
+      this.usuarioService.cadastrarAvaliacao(this.conteudo, this.descricao, this.peso, this.id_Materia)
       this.usuarioService.cadastrarNota
       this.usuarioService.dadosPessoa()
         .then((resultadoPessoa: any) => {
@@ -147,7 +147,7 @@ export class AvaliacaoComponent implements OnInit {
                       if (valorPessoa.RG == valorAluno.RG_PESSOA) {
                         this.usuarioService.dadosAvaliacao()
                         .then((resultadoAvaliacao: any) => {
-                        this.usuarioService.cadastrarNota( resultadoAvaliacao.length, valorAluno.ID, this.id_Materia, this.listaNotas[i])
+                        this.usuarioService.cadastrarNota(resultadoAvaliacao.length, valorAluno.ID, this.listaNotas[i])
                         this.router.navigate(['professor/turma', this.id_turma], { queryParams: { id: this.id_professor } })
                       })
                         }

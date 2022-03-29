@@ -55,7 +55,7 @@ export class PerfilComponent implements OnInit {
   }
 
   mudarPerfil() {
-    this.usuarioService.mudarPessoa(this.rg, this.nome, this.email, this.usuario, this.senha, this.rg_velho)
+    this.usuarioService.mudarPessoa(this.nome, this.email, this.usuario, this.senha, this.rg_velho)
     this.router.navigate(['aluno/', this.id])
   }
 

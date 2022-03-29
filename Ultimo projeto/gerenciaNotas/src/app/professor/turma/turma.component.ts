@@ -22,6 +22,7 @@ export class TurmaComponent implements OnInit {
   user = ''
   listaAlunos = []
   nomeMateria = ''
+  listaProvas = []
 
   ngOnInit() {
     this.id_turma = this.router.url.charAt(this.router.url.length - 6)
@@ -72,13 +73,30 @@ export class TurmaComponent implements OnInit {
     })
     this.usuarioService.dadosMateria()
     .then((result: any) => {
-      result.find(valor => {
-        if (valor.ID_PROFESSOR == this.id_professor) {
+      result.find(valorMateria => {
+        if (valorMateria.ID_PROFESSOR == this.id_professor) {
           this.usuarioService.dadosTurma()
             .then((resultado: any) => {
-              resultado.find(info => {
-                if (info.ID_CURSO == valor.ID_CURSO) {
-                  this.nomeMateria = valor.NOME
+              resultado.find(valorTurma => {
+                if (valorTurma.ID_CURSO == valorMateria.ID_CURSO) {
+                  this.nomeMateria = valorMateria.NOME
+                  this.usuarioService.dadosAvaliacao()
+                  .then((resultadoAvaliacao: any) => {
+                    resultadoAvaliacao.find(valorAvaliacao => {
+                      if(valorAvaliacao.ID_MATERIA ==valorMateria.ID){
+                        this.usuarioService.dadosNota()
+                        .then((resultadoNota: any) => {
+                          let listaNotas = []
+                          resultadoNota.find(valorNota => {
+                            if(valorNota.ID_AVALIACAO == valorAvaliacao.ID){
+                              listaNotas.push(valorNota.NOTA)
+                            }
+                          })
+                          this.listaProvas.push(listaNotas)
+                        })
+                      }
+                    })
+                  })
                 }
               })
             })

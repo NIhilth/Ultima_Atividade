@@ -124,7 +124,7 @@ inserirRota('/checar_pessoa', function (dados, resposta){
 })
 
 inserirRota('/cadastrar_nota', function (dados, resposta){
-    database(`INSERT INTO NOTA VALUES (null, "${dados.NOTA}", "${dados.ID_ALUNO}", "${dados.ID_TURMA}", "${dados.ID_AVALIACAO}")`)
+    database(`INSERT INTO NOTA VALUES (null, "${dados.NOTA}", "${dados.ID_ALUNO}", "${dados.ID_AVALIACAO}")`)
     .then(result =>{
         resposta(result)
     }).catch(erro => {
@@ -133,8 +133,8 @@ inserirRota('/cadastrar_nota', function (dados, resposta){
     })
 })
 
-inserirRota('/cadastrar_PROVA', function (dados, resposta){
-    database(`INSERT INTO AVALIACAO VALUES (null, "${dados.CONTEUDO}", "${dados.DESCRICAO}", "${dados.PESO}")`)
+inserirRota('/cadastrar_prova', function (dados, resposta){
+    database(`INSERT INTO AVALIACAO VALUES (null, "${dados.CONTEUDO}", "${dados.DESCRICAO}", "${dados.PESO}", "${dados.ID_MATERIA}")`)
     .then(result =>{
         resposta(result)
     }).catch(erro => {

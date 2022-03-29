@@ -126,12 +126,12 @@ export class UsuarioService {
     })
   }
 
-  cadastrarNota(ID_AVALIACAO,ID_ALUNO, ID_TURMA, NOTA){
+  cadastrarNota(ID_AVALIACAO,ID_ALUNO, NOTA){
     return new Promise((resolve, reject) => {
       fetch('/api/cadastrar_nota',
         {
           method: 'POST',
-          body: JSON.stringify({ID_AVALIACAO, ID_ALUNO, ID_TURMA, NOTA}),
+          body: JSON.stringify({ID_AVALIACAO, ID_ALUNO, NOTA}),
           headers: { 'Content-Type': 'application/json' }
         }
       ).then(result => result.json())
@@ -140,12 +140,12 @@ export class UsuarioService {
     })
   }
 
-  cadastrarAvaliacao(CONTEUDO, DESCRICAO, PESO){
+  cadastrarAvaliacao(CONTEUDO, DESCRICAO, PESO, ID_MATERIA){
     return new Promise((resolve, reject) => {
       fetch('/api/cadastrar_prova',
         {
           method: 'POST',
-          body: JSON.stringify({CONTEUDO, DESCRICAO, PESO}),
+          body: JSON.stringify({CONTEUDO, DESCRICAO, PESO, ID_MATERIA}),
           headers: { 'Content-Type': 'application/json' }
         }
       ).then(result => result.json())
