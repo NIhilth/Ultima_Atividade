@@ -45,6 +45,9 @@
           <div (click)="voltar()" class="botao">
             Voltar
           </div>
+          <div *ngIf="listaProvas != '' " (click)="remover()" class="botao">
+            Remover avaliação
+          </div>
         </div>
       </div>
     </div>

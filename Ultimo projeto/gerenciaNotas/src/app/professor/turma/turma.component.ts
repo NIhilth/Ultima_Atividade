@@ -113,4 +113,8 @@ export class TurmaComponent implements OnInit {
     this.router.navigate(['professor/cadastrar_nota', this.id_turma], { queryParams: { id: this.id_professor } })
   }
 
+  remover(){
+    
+  }
+
 }
