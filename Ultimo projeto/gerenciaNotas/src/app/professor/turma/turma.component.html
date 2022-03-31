@@ -45,7 +45,10 @@
           <div (click)="voltar()" class="botao">
             Voltar
           </div>
-          <div *ngIf="listaProvas != '' " (click)="remover()" class="botao">
+          <div #modalaaaa class="modal">
+            <button (click)="fecharModal()">Fechar</button>
+          </div>
+          <div *ngIf="listaProvas != '' " (click)="remover()" class="botao" id="botaoModal">
             Remover avaliação
           </div>
         </div>

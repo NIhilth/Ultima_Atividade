@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 
@@ -8,6 +8,9 @@ import { UsuarioService } from '../../services/usuario.service';
   styleUrls: ['./turma.component.css']
 })
 export class TurmaComponent implements OnInit {
+
+  @ViewChild('modalaaaa', { read: ElementRef })
+  private modalElement: ElementRef
 
   constructor(
     private usuarioService: UsuarioService,
@@ -113,8 +116,16 @@ export class TurmaComponent implements OnInit {
     this.router.navigate(['professor/cadastrar_nota', this.id_turma], { queryParams: { id: this.id_professor } })
   }
 
+  fecharModal() {
+    console.log(this.modalElement);
+    const htmlElement: HTMLElement = this.modalElement.nativeElement;
+    htmlElement.classList.remove('open');
+  }
+
   remover(){
-    
+    console.log(this.modalElement);
+    const htmlElement: HTMLElement = this.modalElement.nativeElement;
+    htmlElement.classList.add('open');
   }
 
 }
