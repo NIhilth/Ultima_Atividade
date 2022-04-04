@@ -142,3 +142,23 @@ inserirRota('/cadastrar_prova', function (dados, resposta){
         resposta({ erro })
     })
 })
+
+inserirRota('/deletar_notas', function (dados, resposta){
+    database(`DELETE FROM NOTA WHERE ID_AVALIACAO = "${dados.ID}"`)
+    .then(result =>{
+        resposta(result)
+    }).catch(erro => {
+        console.log('DEU BOSTA')
+        resposta({ erro })
+    })
+})
+
+inserirRota('/deletar_prova', function (dados, resposta){
+    database(`DELETE FROM AVALIACAO WHERE ID = "${dados.ID}"`)
+    .then(result =>{
+        resposta(result)
+    }).catch(erro => {
+        console.log('DEU BOSTA')
+        resposta({ erro })
+    })
+})

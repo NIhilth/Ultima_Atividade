@@ -123,7 +123,6 @@ export class TurmasComponent implements OnInit {
   }
 
   verTurma(numero) {
-    console.log(numero)
     this.router.navigate(['professor/turma', numero], { queryParams: { id: this.id } })
   }
 

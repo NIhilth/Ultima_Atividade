@@ -131,8 +131,6 @@ export class AvaliacaoComponent implements OnInit {
       alert("Algum campo está em branco!")
     }
 
-    console.log(notasPostas, " " , numero, " " , preenchido)
-
     if(checar) {
       this.usuarioService.cadastrarAvaliacao(this.conteudo, this.descricao, this.peso, this.id_Materia)
       this.usuarioService.cadastrarNota
@@ -147,8 +145,12 @@ export class AvaliacaoComponent implements OnInit {
                       if (valorPessoa.RG == valorAluno.RG_PESSOA) {
                         this.usuarioService.dadosAvaliacao()
                         .then((resultadoAvaliacao: any) => {
-                        this.usuarioService.cadastrarNota(resultadoAvaliacao.length, valorAluno.ID, this.listaNotas[i])
-                        this.router.navigate(['professor/turma', this.id_turma], { queryParams: { id: this.id_professor } })
+                          resultadoAvaliacao.find( valorAvaliacao => {
+                            if(valorAvaliacao.CONTEUDO == this.conteudo && valorAvaliacao.DESCRICAO == this.descricao){
+                              this.usuarioService.cadastrarNota(valorAvaliacao.ID, valorAluno.ID, this.listaNotas[i])
+                              this.router.navigate(['professor/turma', this.id_turma], { queryParams: { id: this.id_professor } })
+                            }
+                          })
                       })
                         }
                     })

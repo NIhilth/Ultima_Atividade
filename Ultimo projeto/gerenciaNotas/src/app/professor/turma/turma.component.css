@@ -214,14 +214,29 @@ h1{
 
 .modal {
     display: none;
-    height: 90vh;
-    width: 90vw;
+    height: 50vh;
+    width: 50vw;
     position: absolute;
-    top: 5vh;
-    left: 5vw;
-    background-color: red;
+    top: 25vh;
+    left: 25vw;
+    background-color: #004764;
+    border-radius: 10px;
 }
 
 .modal.open {
-    display: block;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.provas{
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+    margin-bottom: 5px;
+}
+
+.provas.close{
+    display: none;
 }

@@ -34,23 +34,31 @@
           <div class="notas">
             <div class="container-nota" *ngFor="let prova of listaProvas; let i = index">
               <span>Prova {{i+1}}: </span>
-              <span class="notaNumero">{{prova[i]}}</span>
+              <span class="notaNumero">{{prova.notas[i]}}</span>
             </div>
           </div>
         </div>
         <div id="botoes">
-          <div (click)="vaiCadastrarNota()" class="botao">
+          <button (click)="vaiCadastrarNota()" class="botao">
             Cadastrar nota
-          </div>
-          <div (click)="voltar()" class="botao">
+          </button>
+          <button (click)="voltar()" class="botao">
             Voltar
-          </div>
+          </button>
           <div #modalaaaa class="modal">
-            <button (click)="fecharModal()">Fechar</button>
+            <div #provaModal class="provas" *ngFor="let prova of listaProvas; let i = index">
+              <div>Conteúdo: {{prova.conteudo}}</div> 
+              <div>Descrição: {{prova.descricao}}</div> 
+              <div>Peso: {{prova.peso}}</div> 
+              <button class="botao" (click)="removerProva(prova.descricao, prova.conteudo)">Remover prova</button>
+            </div>
+            <div id="botoes" style="width: 100%">
+              <button class="botao" (click)="fecharModal()">Fechar</button>
+            </div>
           </div>
-          <div *ngIf="listaProvas != '' " (click)="remover()" class="botao" id="botaoModal">
+          <button *ngIf="listaProvas != '' " (click)="remover()" class="botao" id="botaoModal">
             Remover avaliação
-          </div>
+          </button>
         </div>
       </div>
     </div>

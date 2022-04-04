@@ -153,4 +153,33 @@ export class UsuarioService {
         .catch(reject)
     })
   }
+
+  deletarNotas(ID){
+    return new Promise((resolve, reject) => {
+      fetch('/api/deletar_notas',
+        {
+          method: 'POST',
+          body: JSON.stringify({ID}),
+          headers: { 'Content-Type': 'application/json' }
+        }
+      ).then(result => result.json())
+        .then(resolvido => resolve(resolvido))
+        .catch(reject)
+    })
+  }
+
+  deletarProva(ID){
+    return new Promise((resolve, reject) => {
+      fetch('/api/deletar_prova',
+        {
+          method: 'POST',
+          body: JSON.stringify({ID}),
+          headers: { 'Content-Type': 'application/json' }
+        }
+      ).then(result => result.json())
+        .then(resolvido => resolve(resolvido))
+        .catch(reject)
+    })
+  }
+
 }
