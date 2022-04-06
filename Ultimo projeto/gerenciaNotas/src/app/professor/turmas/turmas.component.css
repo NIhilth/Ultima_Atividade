@@ -133,10 +133,6 @@ p{
     display: grid;
 }
 
-.turma:hover{
-    
-}
-
 .info-turma{
     display: grid;
     align-items: center;

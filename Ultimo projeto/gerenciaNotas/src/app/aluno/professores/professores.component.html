@@ -1,3 +1,48 @@
-<p>
-  professores works!
-</p>
+<body>
+  <div class="first-column">
+    <div class="logo">
+      <img src="./assets/logo.png" style="width: 162.5px;">
+    </div>
+    <div class="div-professor">
+      <div class="foto-professor">
+        <img class="imagem"
+          [src]="sexo == 'F' ? 'https://img.icons8.com/dusk/64/000000/student-female.png' : 'https://img.icons8.com/dusk/64/000000/student-male.png' ">
+      </div>
+      <p> {{nome}}</p>
+    </div>
+  </div>
+  <div class="second-column">
+    <div class="barra">
+    </div>
+    <div id="titulo">
+      <h1> Alunos </h1>
+    </div>
+    <div class="Container-info-professor">
+      <div class="info-professor">
+        <div id="info">
+          <table>
+            <tr>
+              <th>Professor</th>
+              <th>Matéria</th>
+              <th>Carga Horária</th>
+            </tr>
+            <tr *ngFor="let professor of listaProfessores">
+              <td>
+                {{professor.nome}}
+              </td>
+              <td>
+                {{professor.materia}}
+              </td>
+              <td>
+                {{professor.cargaHoraria}}
+              </td>
+            </tr>
+          </table>
+        </div>
+        <button (click)="voltar()" class="botao">
+          Voltar
+        </button>
+      </div>
+    </div>
+  </div>
+</body>

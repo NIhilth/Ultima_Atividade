@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { L } from '@angular/core/src/render3';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 

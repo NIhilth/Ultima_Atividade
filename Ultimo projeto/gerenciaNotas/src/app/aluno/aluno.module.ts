@@ -1,4 +1,4 @@
-import { NgModule, Component } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Routes } from '@angular/router';
@@ -10,16 +10,14 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { DisciplinasComponent } from './disciplinas/disciplinas.component';
-import { ProfessoresComponent } from './professores/professores.component';
+import {ProfessoresComponent} from './professores/professores.component'
 
 
 const routes: Routes = [
   {
     path: 'aluno', children: [
       {
-        path: ':id_aluno', canActivate: [CheckLoggedStudent], component: InicioAlunoComponent, children: [
-          { path: 'materia', canActivate: [CheckLoggedStudent], component: MateriaComponent }
-        ]
+        path: ':id_aluno', canActivate: [CheckLoggedStudent], component: InicioAlunoComponent
       },
       {
         path: '', component: LoginComponent
@@ -34,7 +32,21 @@ const routes: Routes = [
       {
         path: 'materias', children: [
           {
-            path: ':id_aluno', canActivate: [CheckLoggedStudent], component: MateriaComponent
+            path: ':id_aluno', canActivate: [CheckLoggedStudent], component: DisciplinasComponent
+          }
+        ]
+      },
+      {
+        path: 'professores', children: [
+          {
+            path: ':id_aluno', canActivate: [CheckLoggedStudent], component: ProfessoresComponent
+          }
+        ]
+      },
+      {
+        path: 'materia', children: [
+          {
+            path: ':id_materia', canActivate: [CheckLoggedStudent], component: MateriaComponent
           }
         ]
       }
