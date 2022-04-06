@@ -10,6 +10,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { DisciplinasComponent } from './disciplinas/disciplinas.component';
+import { ProfessoresComponent } from './professores/professores.component';
 
 
 const routes: Routes = [
@@ -26,7 +27,14 @@ const routes: Routes = [
       {
         path: 'perfil', children: [
           {
-            path: ':id_aluno', canActivate: [CheckLoggedStudent] ,component: PerfilComponent
+            path: ':id_aluno', canActivate: [CheckLoggedStudent], component: PerfilComponent
+          }
+        ]
+      },
+      {
+        path: 'materias', children: [
+          {
+            path: ':id_aluno', canActivate: [CheckLoggedStudent], component: MateriaComponent
           }
         ]
       }
@@ -41,6 +49,6 @@ const routes: Routes = [
     FormsModule,
     BrowserModule
   ],
-  declarations: [InicioAlunoComponent, MateriaComponent, PerfilComponent, DisciplinasComponent]
+  declarations: [InicioAlunoComponent, MateriaComponent, PerfilComponent, DisciplinasComponent, ProfessoresComponent]
 })
 export class AlunoModule { }
