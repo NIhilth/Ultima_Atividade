@@ -34,7 +34,7 @@ export class DisciplinasComponent implements OnInit {
                 resultado.find(valor => {
                   if (valor.RG == valorAluno.RG_PESSOA) {
                     this.nome = valor.NOME
-                    this.sexo = valor.sexo
+                    this.sexo = valor.SEXO
                     if (valor.USUARIO != localStorage.getItem('USER')) {
                       this.router.navigate([''])
                     }

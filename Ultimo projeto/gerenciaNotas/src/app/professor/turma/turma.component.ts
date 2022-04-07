@@ -105,8 +105,8 @@ export class TurmaComponent implements OnInit {
                                   notas: listaNotas,
                                   peso: valorAvaliacao.PESO
                                 }
-                                console.log(prova)
                                 this.listaProvas.push(prova)
+                                console.log(this.listaProvas)
                               })
                           }
                         })

@@ -102,6 +102,7 @@ export class AvaliacaoComponent implements OnInit {
     let notasPostas = 0
     let preenchido = false
     let numero = 0
+    let algarismo = 0
 
     for (let i = 0; i < this.listaNotas.length; i++) {
       if (this.listaNotas[i] != "") {
@@ -111,18 +112,26 @@ export class AvaliacaoComponent implements OnInit {
       if (!!+this.listaNotas[i]) {
         numero++
       }
+
+      if (this.listaNotas[i] <= 10 && this.listaNotas[i] >= 0) {
+        algarismo++
+      }
     }
 
     if (this.conteudo != "" && this.descricao != "" && this.peso != undefined) {
       preenchido = true
     }
 
-    if(notasPostas == this.listaNotas.length){
-      if(numero == this.listaNotas.length){
-        if(preenchido){
-          checar = true
+    if (notasPostas == this.listaNotas.length) {
+      if (numero == this.listaNotas.length) {
+        if (algarismo == this.listaNotas.length) {
+          if (preenchido) {
+            checar = true
+          } else {
+            alert("Algum campo nas especificações está em branco!")
+          }
         } else {
-          alert("Algum campo nas especificações está em branco!")
+          alert("Alguma nota é maior que 10 ou menor que 0!")
         }
       } else {
         alert("Alguma nota não é um número!")
@@ -131,7 +140,7 @@ export class AvaliacaoComponent implements OnInit {
       alert("Algum campo está em branco!")
     }
 
-    if(checar) {
+    if (checar) {
       this.usuarioService.cadastrarAvaliacao(this.conteudo, this.descricao, this.peso, this.id_Materia)
       this.usuarioService.cadastrarNota
       this.usuarioService.dadosPessoa()
@@ -144,15 +153,15 @@ export class AvaliacaoComponent implements OnInit {
                     resultadoAluno.find(valorAluno => {
                       if (valorPessoa.RG == valorAluno.RG_PESSOA) {
                         this.usuarioService.dadosAvaliacao()
-                        .then((resultadoAvaliacao: any) => {
-                          resultadoAvaliacao.find( valorAvaliacao => {
-                            if(valorAvaliacao.CONTEUDO == this.conteudo && valorAvaliacao.DESCRICAO == this.descricao){
-                              this.usuarioService.cadastrarNota(valorAvaliacao.ID, valorAluno.ID, this.listaNotas[i])
-                              this.router.navigate(['professor/turma', this.id_turma], { queryParams: { id: this.id_professor } })
-                            }
+                          .then((resultadoAvaliacao: any) => {
+                            resultadoAvaliacao.find(valorAvaliacao => {
+                              if (valorAvaliacao.CONTEUDO == this.conteudo && valorAvaliacao.DESCRICAO == this.descricao) {
+                                this.usuarioService.cadastrarNota(valorAvaliacao.ID, valorAluno.ID, this.listaNotas[i])
+                                this.router.navigate(['professor/turma', this.id_turma], { queryParams: { id: this.id_professor } })
+                              }
+                            })
                           })
-                      })
-                        }
+                      }
                     })
                   })
               }
