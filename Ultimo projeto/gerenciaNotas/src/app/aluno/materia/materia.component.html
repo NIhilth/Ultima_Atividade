@@ -17,29 +17,39 @@
     <div id="containerTitulo">
       <h1>{{nomeMateria}}</h1>
     </div>
-    <div class="container_Informacoes">
-      <div class="informacoes_prova" *ngFor="let prova of listaProvas">
-        <div class="cadastro">
-          <span>Conteúdo:</span>
-          <span>{{prova.CONTEUDO}}</span>
+    <div class="Container-info-professor">
+      <div class="info-professor">
+        <div id="info">
+          <table>
+            <tr>
+              <th>Conteúdo</th>
+              <th>Descrição</th>
+              <th>Peso</th>
+              <th>Nota</th>
+            </tr>
+            <tr *ngFor="let prova of listaProvas">
+              <td>
+                {{prova.CONTEUDO}}
+              </td>
+              <td>
+                {{prova.DESCRICAO}}
+              </td>
+              <td>
+                {{prova.PESO}}
+              </td>
+              <td>
+                {{prova.NOTA}}
+              </td>
+            </tr>
+          </table>
         </div>
-        <div class="cadastro">
-          <span>Peso:</span>
-          <span>{{prova.PESO}}</span>
-        </div>
-        <div class="cadastro">
-          <span>Descrição:</span>
-            <span>{{prova.DESCRICAO}}</span>
-        </div>
+        <button (click)="voltar()" class="botao">
+          Voltar
+        </button>
       </div>
     </div>
     <div class="container-turmas">
       <div id="turmas">
-        <div id="botoes">
-          <button (click) ="voltar()" class="botao">
-            Voltar
-          </button>
-        </div>
       </div>
     </div>
   </div>

@@ -51,15 +51,27 @@ export class MateriaComponent implements OnInit {
       this.usuarioService.dadosMateria()
       .then((resultadoMateria: any) => {
         resultadoMateria.find(valorMateria => {
-          console.log(valorMateria)
           if(valorMateria.ID == this.id_materia){
             this.nomeMateria = valorMateria.NOME
             this.usuarioService.dadosAvaliacao()
             .then((resultadoProva: any) => {
               resultadoProva.find(valorProva => {
                 if(valorProva.ID_MATERIA == valorMateria.ID){
-                  this.listaProvas.push(valorProva)
-                  console.log(this.listaProvas)
+                  this.usuarioService.dadosNota()
+                  .then((resultadoNota: any) => {
+                    resultadoNota.find(valorNota => {
+                      if(valorNota.ID_AVALIACAO== valorProva.ID && valorNota.ID_ALUNO == this.id_aluno){
+                        console.log(valorNota)
+                        let object = {
+                          CONTEUDO: valorProva.CONTEUDO,
+                          DESCRICAO: valorProva.DESCRICAO,
+                          PESO:valorProva.PESO,
+                          NOTA: valorNota.NOTA
+                        }
+                        this.listaProvas.push(object)
+                      }
+                    })
+                  })
                 }
               })
             })

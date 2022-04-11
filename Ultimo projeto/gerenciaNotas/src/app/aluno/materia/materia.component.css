@@ -191,6 +191,37 @@ h1{
     -webkit-text-fill-color: transparent;
     position: relative;
 }
+.Container-info-professor{
+    margin: 20px 0px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-professor{
+    padding: 10px 0px;
+    background-color: #0071A0;
+    margin: 0px 20px;
+    width: 70%;
+    border-radius: 10px;
+    border: 1px solid #e1f6ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+#info{
+    margin: 10px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: white; 
+    border-radius: 10px;
+}
 
 .container_Informacoes{
     width: 100%;
@@ -243,4 +274,15 @@ input {
 
 .input-nota{
     width: 20px;
+}
+
+th,
+td{
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+
+td {
+    font-size: small;
 }
