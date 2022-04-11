@@ -45,6 +45,9 @@ export class PerfilComponent implements OnInit {
                     this.rg_velho = valor.RG
                     this.usuario = valor.USUARIO
                     this.senha = valor.SENHA
+                    if (this.usuario != localStorage.getItem('USER')) {
+                      this.router.navigate([''])
+                    }
                   }
                 })
               })
